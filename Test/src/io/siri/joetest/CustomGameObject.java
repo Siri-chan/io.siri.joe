@@ -2,7 +2,6 @@ package io.siri.joetest;
 
 import io.siri.joe.GameObject;
 import io.siri.joe.Vector2Int;
-import jdk.jshell.spi.ExecutionControl;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -18,8 +17,8 @@ public class CustomGameObject extends GameObject {
     @Override
     public void tic(int[] inputs) {
         for (int keyCode : inputs) {
-            if(keyCode == KeyEvent.VK_UP){
-                throw new ExecutionControl.NotImplementedException("not implemented");
+            if (keyCode == KeyEvent.VK_UP) {
+                pos = pos.add(Vector2Int.DOWN.multiply(6));
                 //do move up dumdum
             }
         }
