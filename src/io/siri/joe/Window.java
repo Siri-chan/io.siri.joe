@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Window extends Canvas {
-    public Window(Dimension resolution, String title, Core game){
+    public Window(Dimension resolution, String title, Core game) {
         JFrame frame = new JFrame(title);
         frame.setPreferredSize(resolution);
         frame.setMinimumSize(resolution);

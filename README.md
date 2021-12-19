@@ -29,8 +29,19 @@ https://noobtuts.com/java/vector2-class
 ##Friend Projects
 
 #Joe's Dependencies.
-Built on OpenJDK 16, using `java.awt.*`, `java.awt.image.BufferStrategy`. `java.util.LinkedList` and `javax.swing.*`.  
-Written Using **JetBrains IntelliJ**, though (hopefully) **Eclipse** and other IDEs should compile it anyway.
+Built on OpenJDK 16, using `java.awt.*`, `java.awt.image.BufferStrategy`, 
+`java.util.LinkedList`, `java.util.Arrays`, `java.util.LinkedList`, 
+`java.util.stream.IntStream` and `javax.swing.*`.  
+Written Using **JetBrains IntelliJ IDEA**, though (hopefully) **Eclipse** and other IDEs should compile it anyway.
 
 
 #Licensing Joe.
+
+#ToDos:
+- [ ] Write JavaDoc for everything
+- [ ] Audio 
+- [ ] UI System
+- [ ] Physics Engine
+- [ ] Particles
+- [ ] Post Processing
+- [ ] Maybe Experiment with 3D?
