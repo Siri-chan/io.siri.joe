@@ -1,5 +1,9 @@
 package io.siri.joe;
-
+/**
+ *  A representation of the Integer x and y within 2D space.
+ *  @apiNote Designed for use with java.awt.*, thusly, y is measured top-down, and not bottom-up.
+ *  @see Vector2 Floating-Point Vector2
+ */
 public class Vector2Int {
     // Members
     public int x;
@@ -171,10 +175,10 @@ public class Vector2Int {
 
 
     public Vector2Int clamp(Vector2Int min, Vector2Int max) {
-        return (this.greater(max) ? max : (this.less(min) ? min : this));
+        return new Vector2Int(Maths.clamp(this.x, min.x, max.x), Maths.clamp(this.x, min.x, max.x));
     }
 
     public static Vector2Int clamp(Vector2Int v, Vector2Int min, Vector2Int max) {
-        return (v.greater(max) ? max : (v.less(min) ? min : v));
+        return new Vector2Int(Maths.clamp(v.x, min.x, max.x), Maths.clamp(v.x, min.x, max.x));
     }
 }

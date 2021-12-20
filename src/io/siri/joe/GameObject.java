@@ -1,6 +1,7 @@
 package io.siri.joe;
 
 import java.awt.*;
+import java.util.*;
 
 public abstract class GameObject {
     protected Vector2Int pos;
@@ -11,24 +12,27 @@ public abstract class GameObject {
         this.scale = scale;
     }
 
-    public Dimension getPos() {
-        return scale;
+    public Vector2Int getPos() {
+        return pos;
     }
 
-    public void setPos(Dimension scale) {
-        this.scale = scale;
-    }
-
-    public Dimension getScale() {
-        return scale;
-    }
-
-    public void setScale(Dimension scale) {
-        this.scale = scale;
+    public void setPos(Vector2Int pos) {
+        this.pos = pos;
     }
 
     public abstract void tic(int[] inputs);
 
     public abstract void render(Graphics g);
+    public LinkedList<Component> components = new LinkedList<>();
 
+    public void componentTic(){
+        for (var component : components) {
+            component.tic();
+        }
+    }
+    public void componentRender(Graphics g){
+        for (var component : components) {
+            component.render(g);
+        }
+    }
 }

@@ -1,32 +1,63 @@
 package io.siri.joetest;
 
+import io.siri.joe.BoxCollider;
 import io.siri.joe.GameObject;
+import io.siri.joe.ParticleTrail;
 import io.siri.joe.Vector2Int;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.LinkedList;
 
 public class CustomGameObject extends GameObject {
+
+    BoxCollider b;
+    ParticleTrail p;
 
     public CustomGameObject(Vector2Int pos, Dimension scale) {
         super(pos, scale);
         this.pos = new Vector2Int(10, 10);
-        this.scale = new Dimension(300, 300);
+        b = new BoxCollider(this, scale);
+        this.components.add(b);
+        p = new ParticleTrail(this, new Dimension(10, 10), 50, Color.BLACK, 25);
+        this.components.add(p);
     }
 
     @Override
     public void tic(int[] inputs) {
+        //Input Handling
         for (int keyCode : inputs) {
-            if (keyCode == KeyEvent.VK_UP) {
-                pos = pos.add(Vector2Int.DOWN.multiply(6));
-                //do move up dumdum
+            //this shouldnt be a switch, probably breaks for loop if input matches event
+            switch (keyCode) {
+                case KeyEvent.VK_UP -> pos = pos.add(Vector2Int.UP.multiply(6));
+
+                case KeyEvent.VK_DOWN -> pos = pos.add(Vector2Int.DOWN.multiply(6));
+
+                case KeyEvent.VK_LEFT -> pos = pos.add(Vector2Int.LEFT.multiply(6));
+
+                case KeyEvent.VK_RIGHT -> pos = pos.add(Vector2Int.RIGHT.multiply(6));
+
+                case KeyEvent.VK_SPACE -> p.enabled = !p.enabled;
             }
+        }
+
+        //Collision Checks
+        LinkedList<GameObject> colliding = new LinkedList<>();
+            b.collision();
+        for (var obj : colliding){
+            break;
+            //EXAMPLE
+            /*
+            if(obj.getClass() = Enemy.class)
+                health --;
+            */
         }
     }
 
     @Override
     public void render(Graphics g) {
         g.setColor(Color.green);
+        //thought: make render private, add a draw method insdie thats public
         g.fillRect(pos.x, pos.y, scale.width, scale.height);
     }
 }

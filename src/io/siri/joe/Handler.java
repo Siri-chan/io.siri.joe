@@ -11,6 +11,7 @@ public class Handler {
 
     public void tic() {
         for (GameObject obj : objs) {
+            obj.componentTic();
             obj.tic(inputs);
         }
         inputs = new int[]{};
@@ -18,6 +19,7 @@ public class Handler {
 
     public void render(Graphics g) {
         for (GameObject obj : objs) {
+            obj.componentRender(g);
             obj.render(g);
         }
     }

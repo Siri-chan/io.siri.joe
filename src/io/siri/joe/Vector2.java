@@ -1,10 +1,11 @@
 package io.siri.joe;
 
-/** Vector2
+/**
  *  A representation of the Floating-Points x and y within 2D space.
  *  @apiNote Designed for use with java.awt.*, thusly, y is measured top-down, and not bottom-up.
- *  @see Vector2Int
+ *  @see Vector2Int Integer Vector2
  */
+//todo add normalise
 public class Vector2 {
     // Members
     public float x;

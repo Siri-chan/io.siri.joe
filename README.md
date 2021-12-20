@@ -39,9 +39,20 @@ Written Using **JetBrains IntelliJ IDEA**, though (hopefully) **Eclipse** and ot
 
 #ToDos:
 - [ ] Write JavaDoc for everything
+- [ ] Texturing for Objects
+- [ ] Rendering Layers
+- [ ] Animation 
+  *(realised I probably don't need this because the render() method is fully exposed)*
+- [ ] More Useful Math Library Stuff
+- [ ] Fix the obviously incorrect Vector2 Clamp Function
+  *(`x` and `y` should be clamped separately)*
+- [ ] File Serialisation and I/O
+- [ ] Maybe Networking Capabilities
 - [ ] Audio 
 - [ ] UI System
+  *(Might not need this either, because render() is exposed to gameobjects)*
 - [ ] Physics Engine
+- [ ] Collision Detection
 - [ ] Particles
 - [ ] Post Processing
 - [ ] Maybe Experiment with 3D?

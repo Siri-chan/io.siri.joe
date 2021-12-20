@@ -11,7 +11,8 @@ public class Main {
         Config cfg = new Config();
         cfg.resolution = new Dimension(1280, 720);
         cfg.title = "Test";
+        cfg.suppressDebug = false;
         JOE.init(cfg);
-        JOE.handler.addObject(new CustomGameObject(new Vector2Int(), new Dimension()));
+        JOE.handler.addObject(new CustomGameObject(new Vector2Int(), new Dimension(10, 10)));
     }
 }
