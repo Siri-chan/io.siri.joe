@@ -20,7 +20,7 @@ public class BoxCollider extends Component{
         return new Rectangle(parent.pos.x, parent.pos.y, scale.width, scale.height);
     }
     @Override
-    public void tic() {
+    public void tic(int[] inputs) {
 
     }
 

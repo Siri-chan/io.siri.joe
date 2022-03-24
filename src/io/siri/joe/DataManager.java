@@ -1,6 +1,8 @@
 package io.siri.joe;
 
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * JOE's inbuilt Data Manager, handles Serialisation and I/O.
@@ -8,25 +10,35 @@ import java.io.*;
  */
 public class DataManager {
     Config cfg;
-    public String constantDataPath;
+    public Path constantDataPath = Paths.get("");
     public DataManager(Config c){
         cfg = c;
-        String[] paths = {System.getenv("LOCALAPPDATA") + "/" + cfg.author + "/" + cfg.pkgid,
+        String[] paths = {System.getenv("LOCALAPPDATA") + "\\" + cfg.author + "\\" + cfg.pkgid,
                 System.getenv("HOME") + "/.config/joe/" + cfg.author + "/" + cfg.pkgid,
-                System.getenv("LOCALAPPDATA") +  cfg.author + "/" + cfg.pkgid,
                 "./" + cfg.author + "/" + cfg.pkgid
         };
         for (String s : paths) {
-            var f = new File(s);
-            if (f.exists())
-                constantDataPath = s;
-            if (f.mkdir())
-                constantDataPath = s;
+            //System.out.println("S " + s);
+            File f;
+            Path p = Paths.get(s);
+            boolean set = false;
+            try {
+                f = p.toRealPath().toFile();
+                //System.out.println("P " + p.toRealPath());
+            } catch (IOException e) {
+                //System.out.println("P ex " + p.toAbsolutePath());
+                f = p.toAbsolutePath().toFile();
+            }
+            //System.out.println("F " + f);
+            if(f.mkdirs() || f.exists()) { //was using mkdir, needed mkdirs, which is equivalent to `mkdir -p`
+                constantDataPath = p;
+                //System.out.println("SET F " + f);
+                set = true;
+            }
+            if(set) break;
         }
-        if(constantDataPath == null){
-            //FIXME: This straight doesn't work.
-            System.out.println("[Non-Fatal Error] DataManager failed to Initialise; Could not initialise constant data path.");
-            constantDataPath = "";
+        if(constantDataPath == Paths.get("")){
+            Core.LogError("(Non-Fatal) DataManager failed to Initialise; Could not initialise constant data path.");
         }
     }
 
@@ -34,20 +46,17 @@ public class DataManager {
      * Serializes any data.
      * @param data Data Class to be serialised.
      * @apiNote Ensure any confidential data (as well as anything else that shouldn't be saved) within the class T is marked as transient.
-     * @param path The path to be serialized to. Relative to `joe.DataManager.constantDataPath` Must include a Filename and Extension.
+     * @param path The path to be serialized to. Relative to constantDataPath Must include a Filename and Extension.
+     * @throws FileNotFoundException When Path not found
      */
-    public <T extends Serializable> void save(T data, String path){
+    public <T extends Serializable> void save(T data, String path) throws FileNotFoundException{
         try {
-            File f;
-            String s = "";
-
-            FileOutputStream fileOut =
-                    new FileOutputStream(s + path);
+            FileOutputStream fileOut = new FileOutputStream(constantDataPath + path);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(data);
             out.close();
             fileOut.close();
-            System.out.printf("Serialized data to %s\n", s + path);
+            Core.Log("Serialized data to " + constantDataPath + path);
         } catch (IOException i) {
             i.printStackTrace();
         }
@@ -57,8 +66,9 @@ public class DataManager {
      * DeSerializes any data.
      * @apiNote Ensure any transient data within the class T will not load.
      * @param path The path to deserialize from. Relative to `joe.DataManager.constantDataPath` Must include a Filename and Extension.
+     * @throws FileNotFoundException When Input File not found
      */
-    public <T extends Serializable> T load(String path){
+    public <T extends Serializable> T load(String path) throws FileNotFoundException{
         T data;
         try {
             FileInputStream fileIn = new FileInputStream(constantDataPath + path);
@@ -66,7 +76,7 @@ public class DataManager {
             data = (T) in.readObject();
             in.close();
             fileIn.close();
-            System.out.printf("Loaded Data from %s\n", constantDataPath + path);
+            Core.Log("Loaded Data from " + constantDataPath + path);
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             return null;

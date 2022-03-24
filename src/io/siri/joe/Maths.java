@@ -7,7 +7,4 @@ public class Maths {
     public static float clamp(float v, float min, float max) {
         return (v > max) ? max : Math.max(v, min);
     }
-    public static float fisr(float value){
-        return 0;
-    }
 }

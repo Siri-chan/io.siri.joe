@@ -5,36 +5,51 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.stream.IntStream;
 
+/**
+ * Handler is the main driving class of JOE and handles the backend. It exposes the GameObject add/remove messages.
+ * @see io.siri.joe.Core
+ * @author Siri
+ */
 public class Handler {
     LinkedList<GameObject> objs = new LinkedList<>();
     int[] inputs = {};
 
-    public void tic() {
+    void tic() {
         for (GameObject obj : objs) {
-            obj.componentTic();
+            obj.componentTic(inputs);
             obj.tic(inputs);
         }
         inputs = new int[]{};
     }
 
-    public void render(Graphics g) {
+    void render(Graphics g) {
         for (GameObject obj : objs) {
             obj.componentRender(g);
             obj.render(g);
         }
     }
     
-    public void dispose(){
+    void dispose(){
         for (GameObject obj :
                 objs) {
             removeObject(obj);
         }
     }
 
+    /**
+     * Adds an object to the Tic/Render loop.
+     *
+     * @param obj The {@link io.siri.joe.GameObject} to Add.
+     */
     public void addObject(GameObject obj) {
         this.objs.add(obj);
     }
 
+    /**
+     * Removes an object from the Tic/Render loop.
+     *
+     * @param obj The {@link io.siri.joe.GameObject} to Remove.
+     */
     public void removeObject(GameObject obj) {
         this.objs.remove(obj);
     }

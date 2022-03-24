@@ -9,12 +9,13 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
-public class CustomGameObject extends GameObject {
+public class Player extends GameObject {
 
-    BoxCollider b;
-    ParticleTrail p;
+    final BoxCollider b;
+    final ParticleTrail p;
+    int health = 999;
 
-    public CustomGameObject(Vector2Int pos, Dimension scale) {
+    public Player(Vector2Int pos, Dimension scale) {
         super(pos, scale);
         this.pos = new Vector2Int(10, 10);
         b = new BoxCollider(this, scale);
@@ -27,7 +28,7 @@ public class CustomGameObject extends GameObject {
     public void tic(int[] inputs) {
         //Input Handling
         for (int keyCode : inputs) {
-            //this shouldnt be a switch, probably breaks for loop if input matches event
+            //this shouldn't be a switch, probably breaks for loop if input matches event
             switch (keyCode) {
                 case KeyEvent.VK_UP -> pos = pos.add(Vector2Int.UP.multiply(6));
 
@@ -42,22 +43,19 @@ public class CustomGameObject extends GameObject {
         }
 
         //Collision Checks
-        LinkedList<GameObject> colliding = new LinkedList<>();
-            b.collision();
+        LinkedList<GameObject> colliding = b.collision();
         for (var obj : colliding){
-            break;
-            //EXAMPLE
-            /*
-            if(obj.getClass() = Enemy.class)
-                health --;
-            */
+            if(obj.getClass() == Enemy.class) {
+                health--;
+                System.out.printf("health: %d\n", health);
+            }
         }
     }
 
     @Override
     public void render(Graphics g) {
         g.setColor(Color.green);
-        //thought: make render private, add a draw method insdie thats public
+        //thought: make render private, add a draw method inside that's public
         g.fillRect(pos.x, pos.y, scale.width, scale.height);
     }
 }

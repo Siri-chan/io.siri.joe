@@ -2,7 +2,7 @@ package io.siri.joe;
 
 /**
  *  A representation of the Floating-Points x and y within 2D space.
- *  @apiNote Designed for use with java.awt.*, thusly, y is measured top-down, and not bottom-up.
+ *  @apiNote Designed for use with java.awt.*, thus, y is measured top-down, and not bottom-up.
  *  @see Vector2Int Integer Vector2
  */
 //todo add normalise
@@ -177,6 +177,6 @@ public class Vector2 {
      * @return The Vector2 v, within the bounds (min, max)
      */
     public static Vector2 clamp(Vector2 v, Vector2 min, Vector2 max) {
-        return (v.greater(max) ? max : (v.less(min) ? min : v));
+        return new Vector2(Maths.clamp(v.x, min.x, max.x), Maths.clamp(v.x, min.x, max.x));
     }
 }

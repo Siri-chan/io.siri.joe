@@ -8,19 +8,34 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
+/**
+ * Core is the base-class of JOE and the primary way of interacting with it.
+ * Takes input from {@link io.siri.joe.Config} when first initialised.
+ * @see io.siri.joe.Handler
+ * @author Siri
+ */
 public class Core extends Canvas implements Runnable {
     public static Core c;
-    Thread thread; //todo: multi-threaded, 1 for logic, 1 for
+    public DataManager d;
+    private Thread thread; //todo: multi-threaded, 1 for logic, 1 for graphics ig
     boolean running = false;
-    Config config;
+    private Config config;
     public Handler handler;
     public Random rand = new Random();
     public KeyInput keyInput;
     Window win;
     public static final double ticCount = 60.0;
 
+    /**
+     * Initialises the Core.
+     * This is done outside a constructor to give more control of when the game starts.
+     *
+     * @param cfg The Configuration of Core.
+     * @see io.siri.joe.Config
+     */
     public void init(Config cfg) {
         config = cfg;
+        d = new DataManager(cfg);
         handler = new Handler();
         keyInput = new KeyInput(handler);
         this.addKeyListener(keyInput);
@@ -65,8 +80,14 @@ public class Core extends Canvas implements Runnable {
     static void Log(String msg){
         if(Core.c.config.suppressDebug) return;
         final String prefix = "- [JOE]:"; //maybe add some more info here
-        System.out.printf("%s %s %s%n", new SimpleDateFormat("HH:mm:ss.SSS").format(new Date()), prefix, msg);
+        System.out.printf("%s %s %s\n", new SimpleDateFormat("HH:mm:ss.SSS").format(new Date()), prefix, msg);
     }
+    static void LogError(String msg){
+        if(Core.c.config.suppressDebug) return;
+        final String prefix = "- [JOE Error]:"; //maybe add some more info here
+        System.err.printf("%s %s %s\n", new SimpleDateFormat("HH:mm:ss.SSS").format(new Date()), prefix, msg);
+    }
+
     void tic() {
         handler.tic();
     }

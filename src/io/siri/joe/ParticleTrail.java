@@ -166,7 +166,7 @@ public class ParticleTrail extends Component{
     }
 
     @Override
-    void tic() {
+    void tic(int[] inputs) {
         if(!enabled || removeLock) return;
         if(lasttime + frequency < System.currentTimeMillis()) {
             pos = parent.pos.add(offset);

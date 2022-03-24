@@ -7,11 +7,9 @@ public class Component {
     Component(GameObject parent){
         this.parent = parent;
     }
-    void tic(){
-        return;
+    void tic(int[] inputs){
     }
 
     void render(Graphics g) {
-        return;
     }
 }
