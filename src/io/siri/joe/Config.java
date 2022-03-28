@@ -1,6 +1,7 @@
 package io.siri.joe;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Color;
 
 /**
  * A bunch of parameters passed into {@link io.siri.joe.Core}, all bundled down into a convenience class.
