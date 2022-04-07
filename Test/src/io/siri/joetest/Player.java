@@ -1,13 +1,14 @@
 package io.siri.joetest;
 
+//Accordioned Imports useful for categorising examples later.
 import io.siri.joe.BoxCollider;
 import io.siri.joe.GameObject;
 import io.siri.joe.ParticleTrail;
 import io.siri.joe.Vector2Int;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.util.LinkedList;
+import java.awt.event.*;
+import java.util.*;
 
 public class Player extends GameObject {
 

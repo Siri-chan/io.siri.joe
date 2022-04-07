@@ -1,9 +1,8 @@
 package io.siri.joe;
 
 import java.awt.*;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.stream.IntStream;
+import java.util.*;
+import java.util.stream.*;
 
 /**
  * Handler is the main driving class of JOE and handles the backend. It exposes the GameObject add/remove messages.

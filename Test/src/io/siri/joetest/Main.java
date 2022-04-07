@@ -3,7 +3,7 @@ package io.siri.joetest;
 import io.siri.joe.*;
 
 import java.awt.*;
-import java.io.FileNotFoundException;
+import java.io.*;
 
 public class Main {
     static Config cfg = new Config("io.siri.joetest", "siri");

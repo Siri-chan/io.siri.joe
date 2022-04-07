@@ -1,7 +1,7 @@
 package io.siri.joe;
 
 import java.awt.*;
-import java.util.LinkedList;
+import java.util.*;
 
 public class ParticleTrail extends Component{
     private float alpha = 1;

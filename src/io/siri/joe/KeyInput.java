@@ -1,7 +1,6 @@
 package io.siri.joe;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 public class KeyInput extends KeyAdapter {
     final Handler handler;

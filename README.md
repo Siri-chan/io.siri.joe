@@ -35,11 +35,9 @@ It means a lot.
 ##Friend Projects
 
 #Joe's Dependencies.
-Built on OpenJDK 16, using `java.awt.*`, `java.awt.event.KeyAdapter`,
-`java.awt.event.KeyEvent`, `java.awt.image.BufferStrategy`, 
-`java.text.SimpleDateFormat`, `java.util.Date`, `java.util.Random`,
-`java.util.LinkedList`, `java.util.Arrays`, `java.util.LinkedList`, `java.io.*`,
-`java.util.stream.IntStream`, `java.nio.file.Path`, `java.nio.file.Paths` 
+Built on OpenJDK 16, using `java.awt.*`, `java.awt.event.*`, `java.awt.image.*`, 
+`java.text.*`, `java.util.*`, `java.io.*`,
+`java.util.stream.*`, `java.nio.file.*` 
 and `javax.swing.*`.  
 Written Using **JetBrains IntelliJ IDEA**, though (hopefully) **Eclipse** and other IDEs should compile it anyway.
 

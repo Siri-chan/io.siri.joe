@@ -3,10 +3,9 @@
 package io.siri.joe;
 
 import java.awt.*;
-import java.awt.image.BufferStrategy;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Random;
+import java.awt.image.*;
+import java.text.*;
+import java.util.*;
 
 /**
  * Core is the base-class of JOE and the primary way of interacting with it.

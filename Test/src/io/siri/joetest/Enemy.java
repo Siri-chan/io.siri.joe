@@ -1,5 +1,6 @@
 package io.siri.joetest;
 
+//Accordioned Imports useful for categorising examples later.
 import io.siri.joe.BoxCollider;
 import io.siri.joe.GameObject;
 import io.siri.joe.Vector2Int;

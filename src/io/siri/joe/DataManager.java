@@ -1,8 +1,7 @@
 package io.siri.joe;
 
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 
 /**
  * JOE's inbuilt Data Manager, handles Serialisation and I/O.
