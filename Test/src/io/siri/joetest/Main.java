@@ -1,6 +1,7 @@
 package io.siri.joetest;
 
 import io.siri.joe.*;
+import io.siri.joe.audio.MusicClip;
 
 import java.awt.*;
 import java.io.*;
@@ -29,5 +30,15 @@ public class Main {
             e.printStackTrace();
         }
         System.out.println(q.test);
+
+        //music test
+        //eventually core will initialise a MusicHandler, and you will just need to add the music you want with an ID
+        MusicClip m;
+        try {
+            m = new MusicClip(new File(JOE.d.constantDataPath + "/test.wav"));
+            m.play();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
