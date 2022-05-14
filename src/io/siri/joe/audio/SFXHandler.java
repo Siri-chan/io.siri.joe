@@ -23,16 +23,4 @@ public class SFXHandler {
         line.close();
         stream.close();
     }
-    public void play(SFXClip clip) throws IOException, LineUnavailableException {
-        clip.line.open(clip.format);
-        clip.line.start();
-        byte[] bufferBytes = new byte[BUFFER_SIZE];
-        int readBytes = -1;
-        while ((readBytes = clip.stream.read(bufferBytes)) != -1) {
-            clip.line.write(bufferBytes, 0, readBytes);
-        }
-        clip.line.drain();
-        clip.line.close();
-        clip.stream.close();
-    }
 }

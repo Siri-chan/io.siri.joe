@@ -1,10 +1,7 @@
 package io.siri.joetest;
 
 import io.siri.joe.*;
-import io.siri.joe.audio.MusicClip;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import java.io.*;
 
@@ -34,11 +31,18 @@ public class Main {
             e.printStackTrace();
         }
         System.out.println(q.test);
-
         try {
-            JOE.sfx.play(new File(JOE.d.constantDataPath + "/testsfx.wav"));
+            JOE.sfx.play(new File(JOE.d.constantDataPath + "/testsfx.wav")); //this disposes the clip
         } catch (Exception e) {
             e.printStackTrace();
         }
+        /*
+        try {
+            var clip = new SFXClip(new File(JOE.d.constantDataPath + "/testsfx.wav"));
+            JOE.sfx.play(clip); //this also disposes the clip, completely pointless reimplementation
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+         */
     }
 }
