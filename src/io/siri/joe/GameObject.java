@@ -48,14 +48,14 @@ public abstract class GameObject {
      *
      * @param inputs Keys being pressed on the frame.
      */
-    public abstract void tic(int[] inputs);
+    public void tic(int[] inputs){}
 
     /**
      * Render. Draws as often as possible.
      *
      * @param g The Graphics Component to Draw to.
      */
-    public abstract void render(Graphics g);
+    public void render(Graphics g){}
 
     /**
      * The Sub-Components of the Object.
