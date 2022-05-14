@@ -17,6 +17,8 @@ public class Main {
         JOE.init(cfg);
         JOE.handler.addObject(new Player(new Vector2Int(), new Dimension(10, 10)));
         JOE.handler.addObject(new Enemy(new Vector2Int(100, 100), new Dimension(10, 10)));
+        //todo maybe make an alternate constructor
+        JOE.handler.addObject(new MusicSystem(Vector2Int.ZERO, new Dimension(0,0)));
         try {
             JOE.d.save(d, "/ser.ser");
         } catch (FileNotFoundException e) {
@@ -30,15 +32,5 @@ public class Main {
             e.printStackTrace();
         }
         System.out.println(q.test);
-
-        //music test
-        //eventually core will initialise a MusicHandler, and you will just need to add the music you want with an ID
-        MusicClip m;
-        try {
-            m = new MusicClip(new File(JOE.d.constantDataPath + "/test.wav"));
-            m.play();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
     }
 }

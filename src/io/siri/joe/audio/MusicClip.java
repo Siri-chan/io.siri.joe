@@ -9,7 +9,7 @@ import java.net.URL;
 
 public class MusicClip {
     //this uses javax.sound.sampled.Clip
-    long now; //Microseconds
+    long now = 0L; //Microseconds
     Clip clip;
     MusicStatus status;
     AudioInputStream audioStream;
@@ -31,6 +31,7 @@ public class MusicClip {
     }
 
     public void play(){
+        //this should play from start
         if(status == MusicStatus.Playing)
             return;
         clip.start();

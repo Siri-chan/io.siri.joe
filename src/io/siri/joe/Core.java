@@ -2,6 +2,9 @@
 // under which this file is saved
 package io.siri.joe;
 
+import io.siri.joe.audio.MusicHandler;
+import io.siri.joe.audio.MusicStatus;
+
 import java.awt.*;
 import java.awt.image.*;
 import java.text.*;
@@ -22,6 +25,7 @@ public class Core extends Canvas implements Runnable {
     public Handler handler;
     public Random rand = new Random();
     public KeyInput keyInput;
+    public MusicHandler music;
     Window win;
     public static final double ticCount = 60.0;
 
@@ -38,6 +42,7 @@ public class Core extends Canvas implements Runnable {
         handler = new Handler();
         keyInput = new KeyInput(handler);
         this.addKeyListener(keyInput);
+        music = new MusicHandler();
         win = new Window(cfg.resolution, cfg.title, this);
     }
 
@@ -106,6 +111,7 @@ public class Core extends Canvas implements Runnable {
     }
 
     public synchronized void stop() {
+        music.disposeAll();
         handler.dispose();
         try {
             thread.join();

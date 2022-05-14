@@ -9,7 +9,8 @@ import java.nio.file.*;
  */
 public class DataManager {
     Config cfg;
-    public Path constantDataPath = Paths.get("");
+    public Path constantDataPath = Paths.get("");   //todo add asset and serial subpaths, and a loadAsset function,
+                                                        // which creates an asset class, which is just an abstracted file class with a type value
     public DataManager(Config c){
         cfg = c;
         String[] paths = {System.getenv("LOCALAPPDATA") + "\\" + cfg.author + "\\" + cfg.pkgid,
