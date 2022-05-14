@@ -1,9 +1,12 @@
-package io.siri.joe;
+package io.siri.joe.components;
+
+import io.siri.joe.*;
+import io.siri.joe.Component;
 
 import java.awt.*;
 import java.util.*;
 
-public class ParticleTrail extends Component{
+public class ParticleTrail extends Component {
     private float alpha = 1;
     private Vector2Int velocity = new Vector2Int();
     private Vector2Int pos, offset = new Vector2Int();
@@ -20,7 +23,7 @@ public class ParticleTrail extends Component{
         super(parent);
         this.d = d;
         this.frequency = frequency;
-        pos = parent.pos;
+        pos = parent.getPos();
         baseLife = life;
     }
     public ParticleTrail(GameObject parent, Dimension d, long frequency, Vector2Int velocity) {
@@ -28,7 +31,7 @@ public class ParticleTrail extends Component{
         this.d = d;
         this.frequency = frequency;
         this.velocity = velocity;
-        pos = parent.pos;
+        pos = parent.getPos();
         baseLife = life;
     }
     public ParticleTrail(GameObject parent, Dimension d, long frequency, Vector2 offset) {
@@ -53,7 +56,7 @@ public class ParticleTrail extends Component{
         this.d = d;
         this.frequency = frequency;
         c = color;
-        pos = parent.pos;
+        pos = parent.getPos();
         baseLife = life;
     }
     public ParticleTrail(GameObject parent, Dimension d, long frequency, Color color, Vector2Int velocity) {
@@ -62,7 +65,7 @@ public class ParticleTrail extends Component{
         this.frequency = frequency;
         c = color;
         this.velocity = velocity;
-        pos = parent.pos;
+        pos = parent.getPos();
         baseLife = life;
     }
     public ParticleTrail(GameObject parent, Dimension d, long frequency, Color color, Vector2 offset) {
@@ -88,7 +91,7 @@ public class ParticleTrail extends Component{
         super(parent);
         this.d = d;
         this.frequency = frequency;
-        pos = parent.pos;
+        pos = parent.getPos();
         life = Maths.clamp(lifeTime, 0, 10);
         baseLife = life;
     }
@@ -97,7 +100,7 @@ public class ParticleTrail extends Component{
         this.d = d;
         this.frequency = frequency;
         this.velocity = velocity;
-        pos = parent.pos;
+        pos = parent.getPos();
         life = Maths.clamp(lifeTime, 0, 10);
         baseLife = life;
     }
@@ -125,7 +128,7 @@ public class ParticleTrail extends Component{
         this.d = d;
         this.frequency = frequency;
         c = color;
-        pos = parent.pos;
+        pos = parent.getPos();
         life = Maths.clamp(lifeTime, 0, 10);
         baseLife = life;
     }
@@ -135,7 +138,7 @@ public class ParticleTrail extends Component{
         this.frequency = frequency;
         c = color;
         this.velocity = velocity;
-        pos = parent.pos;
+        pos = parent.getPos();
         life = Maths.clamp(lifeTime, 0, 10);
         baseLife = life;
     }
@@ -169,7 +172,7 @@ public class ParticleTrail extends Component{
     public void tic(int[] inputs) {
         if(!enabled || removeLock) return;
         if(lasttime + frequency < System.currentTimeMillis()) {
-            pos = parent.pos.add(offset);
+            pos = parent.getPos().add(offset);
             particles.add(new Particle(this, d, c, pos, velocity, life));
             lasttime = System.currentTimeMillis();
         }

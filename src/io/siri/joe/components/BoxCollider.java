@@ -1,9 +1,13 @@
-package io.siri.joe;
+package io.siri.joe.components;
+
+import io.siri.joe.Component;
+import io.siri.joe.Core;
+import io.siri.joe.GameObject;
 
 import java.awt.*;
 import java.util.*;
 
-public class BoxCollider extends Component{
+public class BoxCollider extends Component {
     public boolean showCollider = false;
     protected Dimension scale;
 
@@ -17,7 +21,7 @@ public class BoxCollider extends Component{
         this.showCollider = showCollider;
     }
     Rectangle getBounds() {
-        return new Rectangle(parent.pos.x, parent.pos.y, scale.width, scale.height);
+        return new Rectangle(parent.getPos().x, parent.getPos().y, scale.width, scale.height);
     }
     @Override
     public void tic(int[] inputs) {

@@ -1,4 +1,7 @@
-package io.siri.joe;
+package io.siri.joe.components;
+
+import io.siri.joe.Maths;
+import io.siri.joe.Vector2Int;
 
 import java.awt.*;
 
