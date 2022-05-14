@@ -10,7 +10,7 @@ import java.util.stream.*;
  * @author Siri
  */
 public class Handler {
-    LinkedList<GameObject> objs = new LinkedList<>();
+    public LinkedList<GameObject> objs = new LinkedList<>();
     int[] inputs = {};
 
     void tic() {

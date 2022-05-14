@@ -1,9 +1,9 @@
 package io.siri.joetest;
 
 //Accordioned Imports useful for categorising examples later.
-import io.siri.joe.BoxCollider;
+import io.siri.joe.components.BoxCollider;
 import io.siri.joe.GameObject;
-import io.siri.joe.ParticleTrail;
+import io.siri.joe.components.ParticleTrail;
 import io.siri.joe.Vector2Int;
 
 import java.awt.*;
