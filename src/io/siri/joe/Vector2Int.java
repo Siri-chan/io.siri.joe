@@ -9,7 +9,7 @@ public class Vector2Int {
     public int x;
     public int y;
 
-    public static final Vector2Int DOWN = new Vector2Int(0, 1), UP = new Vector2Int(0, -1), LEFT = new Vector2Int(-1, 0), RIGHT = new Vector2Int(1, 0);
+    public static final Vector2Int DOWN = new Vector2Int(0, 1), UP = new Vector2Int(0, -1), LEFT = new Vector2Int(-1, 0), RIGHT = new Vector2Int(1, 0), ZERO = new Vector2Int(0, 0);
 
     // Constructors
     public Vector2Int() {

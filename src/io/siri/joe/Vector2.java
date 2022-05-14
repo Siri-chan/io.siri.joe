@@ -11,7 +11,7 @@ public class Vector2 {
     public float x;
     public float y;
 
-    public static final Vector2 DOWN = new Vector2(0, 1), UP = new Vector2(0, -1), LEFT = new Vector2(-1, 0), RIGHT = new Vector2(1, 0);
+    public static final Vector2 DOWN = new Vector2(0, 1), UP = new Vector2(0, -1), LEFT = new Vector2(-1, 0), RIGHT = new Vector2(1, 0), ZERO = new Vector2(0,0);
 
     // Constructors
     public Vector2() {
