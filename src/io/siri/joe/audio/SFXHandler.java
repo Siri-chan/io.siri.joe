@@ -5,11 +5,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
+/**
+ * Manages Storage and Playing of Once-Off Sound Effects, In a Queue
+ */
 public class SFXHandler {
     //this uses javax.sound.sampled.SourceDataLine
     private static final int BUFFER_SIZE = 0xFFFF;
     public HashMap<String, File> clips = new HashMap<>();
-    public void play(File soundFile) throws UnsupportedAudioFileException, LineUnavailableException, IOException{
+
+    /**
+     * Plays a sound effect.
+     * @param soundFile The file to play
+     */
+    public void play(File soundFile) throws UnsupportedAudioFileException, LineUnavailableException, IOException{ //todo still need to make a getAsset function
         AudioInputStream stream = AudioSystem.getAudioInputStream(soundFile);
         AudioFormat format = stream.getFormat();
         DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
@@ -25,6 +33,10 @@ public class SFXHandler {
         line.close();
         stream.close();
     }
+
+    //todo write javadoc here, idk what to put
+
+
     public void addClip(String id, File path){
         clips.put(id, path);
     }
