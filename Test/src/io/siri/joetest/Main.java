@@ -36,13 +36,15 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        /*
         try {
-            var clip = new SFXClip(new File(JOE.d.constantDataPath + "/testsfx.wav"));
-            JOE.sfx.play(clip); //this also disposes the clip, completely pointless reimplementation
+            JOE.sfx.addClip("hit", new File(JOE.d.constantDataPath + "/testsfx.wav"));
+            JOE.sfx.addClip("hit2", new File(JOE.d.constantDataPath + "/test.wav"));
+            JOE.sfx.play("hit");
+            //this creates a queue.
+            JOE.sfx.play("hit2");
+            JOE.sfx.play("hit");
         } catch (Exception e){
             e.printStackTrace();
         }
-         */
     }
 }
