@@ -1,4 +1,4 @@
-package io.siri.joetest;
+package io.siri.joe.components;
 
 import io.siri.joe.*;
 import io.siri.joe.Component;
@@ -46,5 +46,15 @@ public class MusicComponent extends Component {
                 Core.c.music.restart(id);
             }
         }
+    }
+
+    //this has to be a full class and not just a struct because fuck java.
+    //because this is here, todo: make a pause/resume toggle.
+    public static class MusicControls {
+        public int play = -1;
+        public int resume = -1;
+        public int pause = -1;
+        public int stop = -1;
+        public int restart = -1;
     }
 }

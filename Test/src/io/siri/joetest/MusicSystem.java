@@ -1,6 +1,7 @@
 package io.siri.joetest;
 
 import io.siri.joe.*;
+import io.siri.joe.components.MusicComponent;
 
 import java.awt.*;
 
@@ -16,7 +17,7 @@ public class MusicSystem extends GameObject{
     public MusicSystem(Vector2Int pos, Dimension scale) { //todo: this should really have an alternate constructor,
                                                                 // pos and scale are unnecessary here
         super(pos, scale);
-        MusicControls m = new MusicControls();
+        MusicComponent.MusicControls m = new MusicComponent.MusicControls();
         m.resume = VK_SPACE;
         m.pause = VK_M;
         m.restart = VK_N;
