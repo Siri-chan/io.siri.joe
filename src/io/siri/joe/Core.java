@@ -2,10 +2,6 @@
 // under which this file is saved
 package io.siri.joe;
 
-import io.siri.joe.audio.MusicHandler;
-import io.siri.joe.audio.MusicStatus;
-import io.siri.joe.audio.SFXHandler;
-
 import java.awt.*;
 import java.awt.image.*;
 import java.text.*;

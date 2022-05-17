@@ -1,6 +1,4 @@
-package io.siri.joe.audio;
-
-import io.siri.joe.Maths;
+package io.siri.joe;
 
 import javax.sound.sampled.*;
 import java.io.File;

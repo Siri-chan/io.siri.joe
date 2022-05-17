@@ -1,4 +1,4 @@
-package io.siri.joe.audio;
+package io.siri.joe;
 
 /**
  * @apiNote Stopped: at now == 0, where Paused: at now == Clip.microsecondlength

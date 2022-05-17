@@ -1,11 +1,7 @@
-package io.siri.joe.audio;
-
-import io.siri.joe.Core;
-import io.siri.joe.Maths;
+package io.siri.joe;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.LinkedList;
 
 public class MusicHandler {
     //this will have a list of music classes, so that we can play/pause/destroy/etc. all of them

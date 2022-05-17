@@ -1,4 +1,4 @@
-package io.siri.joe.audio;
+package io.siri.joe;
 
 import javax.sound.sampled.*;
 import java.io.File;
@@ -26,7 +26,7 @@ public class SFXHandler {
         line.open(format);
         line.start();
         byte[] bufferBytes = new byte[BUFFER_SIZE];
-        int readBytes = -1;
+        int readBytes;
         while ((readBytes = stream.read(bufferBytes)) != -1) {
             line.write(bufferBytes, 0, readBytes);
         }
