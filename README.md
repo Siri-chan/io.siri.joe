@@ -28,6 +28,7 @@ also probably wrote the undocumented code you're looking at, check `git blame`.
 - https://medium.com/geekculture/how-to-make-your-own-game-engine-and-why-ddf0acbc5f3
 - https://noobtuts.com/java/vector2-class
 - https://www.tutorialspoint.com/java/java_serialization.htm
+- https://www.delftstack.com/howto/java/play-sound-in-java/
 
 and also lots and lots of JavaDoc.  
 Thank you to the souls who put the effort into writing comprehensive documentation. 
@@ -37,7 +38,7 @@ It means a lot.
 #Joe's Dependencies.
 Built on OpenJDK 16, using `java.awt.*`, `java.awt.event.*`, `java.awt.image.*`, 
 `java.text.*`, `java.util.*`, `java.io.*`,
-`java.util.stream.*`, `java.nio.file.*` 
+`java.util.stream.*`, `java.nio.file.*`, `javax.sound.sampled.*` 
 and `javax.swing.*`.  
 Written Using **JetBrains IntelliJ IDEA**, though (hopefully) **Eclipse** and other IDEs should compile it anyway.
 
@@ -54,7 +55,9 @@ Written Using **JetBrains IntelliJ IDEA**, though (hopefully) **Eclipse** and ot
 - [x] Fix the obviously incorrect Vector2 Clamp Function
   _(`x` and `y` should be clamped separately)_
 - [x] File Serialisation and I/O
-- [ ] Audio 
+- [ ] Simpler Asset vs. SaveData Serialisation stuff
+- [x] SFX
+- [ ] Music
 - [ ] UI System
   _(Might not need this either, because render() is exposed to GameObjects)_
 - [ ] Physics Engine

@@ -18,6 +18,8 @@ public class Main {
         JOE.handler.addObject(new Enemy(new Vector2Int(100, 100), new Dimension(10, 10)));
         //todo maybe make an alternate constructor
         JOE.handler.addObject(new MusicSystem(Vector2Int.ZERO, new Dimension(0,0)));
+
+
         try {
             JOE.d.save(d, "/ser.ser");
         } catch (FileNotFoundException e) {
@@ -31,6 +33,8 @@ public class Main {
             e.printStackTrace();
         }
         System.out.println(q.test);
+
+        /*
         try {
             JOE.sfx.play(new File(JOE.d.constantDataPath + "/testsfx.wav")); //this disposes the clip
         } catch (Exception e) {
@@ -46,5 +50,7 @@ public class Main {
         } catch (Exception e){
             e.printStackTrace();
         }
+        // `JOE.sfx.play(id/file)` doesnt need a component, because it's a one-liner thats easy to glue on GameObjects
+        */
     }
 }
