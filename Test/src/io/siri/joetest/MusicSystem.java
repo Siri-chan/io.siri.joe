@@ -13,8 +13,13 @@ public class MusicSystem extends GameObject{
      * @param pos   The Position of the Object.
      * @param scale The Scale of the Object.
      */
-    public MusicSystem(Vector2Int pos, Dimension scale) { //todo: this should really have an alternate constructor
+    public MusicSystem(Vector2Int pos, Dimension scale) { //todo: this should really have an alternate constructor,
+                                                                // pos and scale are unnecessary here
         super(pos, scale);
-        components.add(new Music(this, "music", "test.wav"));
+        MusicControls m = new MusicControls();
+        m.resume = VK_SPACE;
+        m.pause = VK_M;
+        m.restart = VK_N;
+        components.add(new MusicComponent(this, "music", "test.wav", m));
     }
 }
