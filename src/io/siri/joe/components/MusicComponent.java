@@ -3,10 +3,24 @@ package io.siri.joe.components;
 import io.siri.joe.*;
 import io.siri.joe.Component;
 
+/**
+ * Implements playing music directly to a GameObject near you!
+ * @author Siri
+ */
 public class MusicComponent extends Component {
     String id;
     MusicControls musicControls;
-    public MusicComponent(GameObject parent, String id, /*eventually this will take Asset, but for now just gimme string path*/String path){
+
+    /**
+     * Initialises the Music Component without any Player Keybindings.
+     * @param parent The parent GameObject. In 99% of cases, use the keyword `this`
+     * @param id An ID used to access the sound.
+     * @param path A path to the Sound Asset to play
+     * @author Siri
+     * @apiNote Begins playing instantly. Use the constructor with {@link MusicControls} in it to let the user
+     *          play/pause the music, or use the methods in {@link MusicHandler} with `id` to control playback.
+     */
+    public MusicComponent(GameObject parent, String id, /*eventually this will take SoundAsset, but for now just gimme string path*/String path){
         super(parent);
         this.id = id;
         musicControls = new MusicControls();
@@ -15,11 +29,23 @@ public class MusicComponent extends Component {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Core.c.music.play(id);
     }
-    public MusicComponent(GameObject parent, String id, /*todo: eventually this will take Asset, but for now just gimme string path*/String path, MusicControls m){
+    /**
+     * Initialises the Music Component without any Player Keybindings.
+     * @param parent The parent GameObject. In 99% of cases, use the keyword `this`
+     * @param id An ID used to access the sound.
+     * @param path A path to the Sound Asset to play
+     * @param controls User Keybindings from {@link java.awt.event.KeyEvent} to control music.
+     * @author Siri
+     * @apiNote Begins playing only as the Player starts it. Use the constructor without {@link MusicControls} in it to autoplay the music,
+     *          or use the methods in {@link MusicHandler} with `id` to control playback.
+     * @see MusicControls
+     */
+    public MusicComponent(GameObject parent, String id, /*todo: eventually this will take Asset, but for now just gimme string path*/String path, MusicControls controls){
         super(parent);
         this.id = id;
-        musicControls = m;
+        musicControls = controls;
         try {
             Core.c.music.add(id, path);
         } catch (Exception e) {
@@ -29,7 +55,7 @@ public class MusicComponent extends Component {
     @Override
     public void tic(int[] inputs){
         for (int keyCode : inputs){
-            //this cant be a switch bc music controls arent constant.
+            //this can't be a switch bc music controls aren't constant.
             if (keyCode == musicControls.play) {
                 Core.c.music.play(id);
             }
@@ -48,6 +74,12 @@ public class MusicComponent extends Component {
         }
     }
 
+    /**
+     * User Keybindings for MusicComponents, using KeyCodes from {@link java.awt.event.KeyEvent}.
+     * @apiNote All bindings default to -1, which does not match any KeyCode.
+     *          This way, you can effectively unbind every control that you don't want players touching.
+     * @author Siri
+     */
     //this has to be a full class and not just a struct because fuck java.
     //because this is here, todo: make a pause/resume toggle.
     public static class MusicControls {

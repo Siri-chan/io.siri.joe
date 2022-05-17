@@ -18,7 +18,7 @@ public class SFXHandler {
      * @param soundFile The file to play
      * @author Siri
      */
-    public void play(File soundFile) throws UnsupportedAudioFileException, LineUnavailableException, IOException{ //todo still need to make a getAsset function
+    public void play(File soundFile/*this will eventually take SoundAsset*/) throws UnsupportedAudioFileException, LineUnavailableException, IOException{ //todo still need to make a getAsset function
         AudioInputStream stream = AudioSystem.getAudioInputStream(soundFile);
         AudioFormat format = stream.getFormat();
         DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
@@ -41,7 +41,7 @@ public class SFXHandler {
      * @param path A filepath to the sound asset.
      * @author Siri
      */
-    public void addClip(String id, File path){
+    public void addClip(String id, File path/*this will eventually take SoundAsset*/){
         clips.put(id, path);
     }
     /**
