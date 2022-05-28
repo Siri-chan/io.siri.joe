@@ -93,21 +93,10 @@ public class DataManager {
      * DeSerializes any data.
      * @apiNote Ensure any transient data within the class T will not load.
      * @param path The path to deserialize from. Relative to `joe.DataManager.constantDataPath` Must include a Filename and Extension.
-     * @throws FileNotFoundException When Input File not found
      */
-    public <T extends Asset> T getAsset(String path) throws FileNotFoundException{
-        T data;
-        try {
-            FileInputStream fileIn = new FileInputStream(assetPath + path);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            data = (T) in.readObject();
-            in.close();
-            fileIn.close();
-            Core.Log("Loaded Data from " + assetPath + path);
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return (T) data;
+    public SpriteAsset getSpriteAsset(String path){
+        SpriteAsset data = new SpriteAsset(assetPath + path);
+        Core.Log("Loaded Sprite from " + assetPath + path);
+        return data;
     }
 }
