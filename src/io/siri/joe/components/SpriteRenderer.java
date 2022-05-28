@@ -24,7 +24,7 @@ public class SpriteRenderer extends Component {
         sprite = ImageIO.read(spriteAsset);
         this.scale = scale;
     }
-    public void draw(Graphics graphics) {
+    public void render(Graphics graphics) {
         graphics.drawImage(sprite, parent.getPos().x, parent.getPos().y, scale.width, scale.height, null);
     }
 }
