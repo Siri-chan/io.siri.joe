@@ -10,6 +10,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * Draws a {@link SpriteAsset} to the screen.
+ * @author Siri
+ */
 public class SpriteRenderer extends Component {
     BufferedImage sprite;
     Dimension scale;

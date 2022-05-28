@@ -46,7 +46,7 @@ Written Using **JetBrains IntelliJ IDEA**, though (hopefully) **Eclipse** and ot
 
 # ToDos:
 - [ ] Write JavaDoc for everything
-- [ ] Texturing for Objects
+- [x] Texturing for Objects
 - [ ] Rendering Layers
 - [ ] Animation 
   _(realised I probably don't need this because the render() method is fully exposed)_
