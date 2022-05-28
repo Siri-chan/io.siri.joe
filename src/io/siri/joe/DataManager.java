@@ -94,6 +94,17 @@ public class DataManager {
      * @apiNote Ensure any transient data within the class T will not load.
      * @param path The path to deserialize from. Relative to `joe.DataManager.constantDataPath` Must include a Filename and Extension.
      */
+    public SoundAsset getSoundAsset(String path) throws InvalidAssetFileException {
+        SoundAsset data = new SoundAsset(assetPath + path);
+        Core.Log("Loaded Sound from " + assetPath + path);
+        return data;
+    }
+
+    /**
+     * DeSerializes any data.
+     * @apiNote Ensure any transient data within the class T will not load.
+     * @param path The path to deserialize from. Relative to `joe.DataManager.constantDataPath` Must include a Filename and Extension.
+     */
     public SpriteAsset getSpriteAsset(String path){
         SpriteAsset data = new SpriteAsset(assetPath + path);
         Core.Log("Loaded Sprite from " + assetPath + path);
