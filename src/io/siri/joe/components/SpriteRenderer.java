@@ -17,9 +17,8 @@ import java.io.IOException;
 public class SpriteRenderer extends Component {
     BufferedImage sprite;
     Dimension scale;
-    public SpriteRenderer(GameObject parent, SpriteAsset spriteAsset) throws IOException, InvalidAssetFileException {
+    public SpriteRenderer(GameObject parent, SpriteAsset spriteAsset) throws IOException {
         super(parent);
-        if (!spriteAsset.checkValidity()) throw new InvalidAssetFileException();
         sprite = ImageIO.read(spriteAsset);
         this.scale = new Dimension(sprite.getWidth(), sprite.getHeight());
     }

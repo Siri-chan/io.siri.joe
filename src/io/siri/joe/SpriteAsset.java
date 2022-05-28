@@ -21,8 +21,9 @@ public class SpriteAsset extends Asset{
      * @param pathname A pathname string
      * @throws NullPointerException If the {@code pathname} argument is {@code null}
      */
-    public SpriteAsset(String pathname) {
+    public SpriteAsset(String pathname) throws InvalidAssetFileException {
         super(pathname);
+        if (!checkValidity()) throw new InvalidAssetFileException();
     }
 
     /**
@@ -49,8 +50,9 @@ public class SpriteAsset extends Asset{
      * @param child  The child pathname string
      * @throws NullPointerException If {@code child} is {@code null}
      */
-    public SpriteAsset(String parent, String child) {
+    public SpriteAsset(String parent, String child) throws InvalidAssetFileException {
         super(parent, child);
+        if (!checkValidity()) throw new InvalidAssetFileException();
     }
 
     /**
@@ -77,8 +79,9 @@ public class SpriteAsset extends Asset{
      * @param child  The child pathname string
      * @throws NullPointerException If {@code child} is {@code null}
      */
-    public SpriteAsset(File parent, String child) {
+    public SpriteAsset(File parent, String child) throws InvalidAssetFileException {
         super(parent, child);
+        if (!checkValidity()) throw new InvalidAssetFileException();
     }
 
     /**
@@ -112,7 +115,8 @@ public class SpriteAsset extends Asset{
      * @see URI
      * @since 1.4
      */
-    public SpriteAsset(URI uri) {
+    public SpriteAsset(URI uri) throws InvalidAssetFileException {
         super(uri);
+        if (!checkValidity()) throw new InvalidAssetFileException();
     }
 }

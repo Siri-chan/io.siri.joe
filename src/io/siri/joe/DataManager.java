@@ -105,7 +105,7 @@ public class DataManager {
      * @apiNote Ensure any transient data within the class T will not load.
      * @param path The path to deserialize from. Relative to `joe.DataManager.constantDataPath` Must include a Filename and Extension.
      */
-    public SpriteAsset getSpriteAsset(String path){
+    public SpriteAsset getSpriteAsset(String path) throws InvalidAssetFileException {
         SpriteAsset data = new SpriteAsset(assetPath + path);
         Core.Log("Loaded Sprite from " + assetPath + path);
         return data;
