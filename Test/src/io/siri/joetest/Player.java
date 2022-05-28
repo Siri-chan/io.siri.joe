@@ -1,10 +1,10 @@
 package io.siri.joetest;
 
 //Accordioned Imports useful for categorising examples later.
+import io.siri.joe.*;
 import io.siri.joe.components.BoxCollider;
-import io.siri.joe.GameObject;
 import io.siri.joe.components.ParticleTrail;
-import io.siri.joe.Vector2Int;
+import io.siri.joe.components.SpriteRenderer;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -14,6 +14,7 @@ public class Player extends GameObject {
 
     final BoxCollider b;
     final ParticleTrail p;
+    SpriteRenderer s;
     int health = 999;
 
     public Player(Vector2Int pos, Dimension scale) {
@@ -23,6 +24,13 @@ public class Player extends GameObject {
         this.components.add(b);
         p = new ParticleTrail(this, new Dimension(10, 10), 50, Color.BLACK, 25);
         this.components.add(p);
+        try {
+            s = new SpriteRenderer(this, Core.c.d.getSpriteAsset("/20201005103949_1.jpg"), new Dimension(100, 100));
+        } catch (Exception e) {
+            e.printStackTrace();
+            s = null;
+        }
+        this.components.add(s);
     }
 
     @Override
