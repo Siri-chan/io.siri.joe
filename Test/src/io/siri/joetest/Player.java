@@ -5,6 +5,7 @@ import io.siri.joe.*;
 import io.siri.joe.components.BoxCollider;
 import io.siri.joe.components.ParticleTrail;
 import io.siri.joe.components.SpriteRenderer;
+import io.siri.joe.components.TextRenderer;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -15,6 +16,7 @@ public class Player extends GameObject {
     final BoxCollider b;
     final ParticleTrail p;
     SpriteRenderer s;
+    TextRenderer t;
     int health = 999;
 
     public Player(Vector2Int pos, Dimension scale) {
@@ -31,6 +33,8 @@ public class Player extends GameObject {
             s = null;
         }
         this.components.add(s);
+        t = new TextRenderer(this, new Font(Font.SANS_SERIF, Font.PLAIN, 100), Color.green, "HP: 1000", new Vector2Int(Core.c.getWidth()/2, 10));
+        this.components.add(t);
     }
 
     @Override
@@ -58,6 +62,12 @@ public class Player extends GameObject {
                 health--;
                 System.out.printf("health: %d\n", health);
             }
+        }
+        t.contents = String.format("HP: %d", health);
+        if(health < 990){
+            t.color = Color.red;
+        } else {
+            t.color = Color.green;
         }
     }
 
