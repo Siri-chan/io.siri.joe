@@ -16,7 +16,7 @@ As a C/++/# Developer, I am used to having a lot of options when it comes to gam
 Unity is obviously amazing and C libraries like Raylib, SDL, etc. are great 
 for quickly writing 2D (or in SDL's case, also 3D) games.  
 I've been trying to lean towards Java recently, to give me something different to do, 
-and I found that there aren't really any engines for Java.  
+and I found that there aren't really any engines (that follow this traditional structure) for Java.  
 So that's what this is.
 ## Contributors
 - **Kira "Siri" K** - Lead Developer, Head Maintainer; `@author` Tag: "**Siri**", 
@@ -66,3 +66,9 @@ Written Using **JetBrains IntelliJ IDEA**, though (hopefully) **Eclipse** and ot
 - [ ] Post Processing
 - [ ] Maybe Networking Capabilities
 - [ ] Maybe Experiment with 3D?
+- [ ] Non-fixed Update Method, that takes Delta.
+  _(shouldn't take input keycodes, as it would mean dropped inputs in the main (fixed) tic loop)_
+- [ ] Management for Locale Strings
+  _(this should take a hashmap that has generic string ids that then return the relevant string for the locale)_
+- [ ] Resolution Scaling without weird bounding issues
+- [ ] Component Event Firing
