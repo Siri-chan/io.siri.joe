@@ -2,9 +2,9 @@ package io.siri.joetest;
 
 import io.siri.joe.GameObject;
 import io.siri.joe.Vector2Int;
+import io.siri.joe.components.TextRenderer;
 
 import java.awt.*;
-import java.util.Objects;
 
 import static java.awt.event.KeyEvent.VK_E;
 import static java.awt.event.KeyEvent.VK_Q;

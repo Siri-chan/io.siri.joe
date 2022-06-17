@@ -5,6 +5,7 @@ import io.siri.joe.*;
 import io.siri.joe.components.BoxCollider;
 import io.siri.joe.components.ParticleTrail;
 import io.siri.joe.components.SpriteRenderer;
+import io.siri.joe.components.TextRenderer;
 
 import java.awt.*;
 import java.awt.event.*;

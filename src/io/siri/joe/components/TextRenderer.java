@@ -1,4 +1,4 @@
-package io.siri.joetest;
+package io.siri.joe.components;
 
 import io.siri.joe.Component;
 import io.siri.joe.GameObject;
@@ -7,11 +7,11 @@ import io.siri.joe.Vector2Int;
 import java.awt.*;
 
 public class TextRenderer extends Component {
-    Font font;
-    String contents;
+    public Font font;
+    public String contents;
     protected boolean hasPos;
-    Vector2Int pos;
-    Color color;
+    public Vector2Int pos;
+    public Color color;
     public TextRenderer(GameObject parent, Font font, Color c, String contents) {
         super(parent);
         this.font = font;
