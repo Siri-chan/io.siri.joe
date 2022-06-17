@@ -57,7 +57,7 @@ Written Using **JetBrains IntelliJ IDEA**, though (hopefully) **Eclipse** and ot
 - [x] File Serialisation and I/O
 - [ ] Simpler Asset vs. SaveData Serialisation stuff
 - [x] SFX
-- [ ] Music
+- [x] Music
 - [ ] UI System
   _(Might not need this either, because render() is exposed to GameObjects)_
 - [ ] Physics Engine
