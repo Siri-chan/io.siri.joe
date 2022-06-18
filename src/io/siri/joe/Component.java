@@ -7,10 +7,8 @@ public class Component {
     public Component(GameObject parent){
         this.parent = parent;
     }
-
-    public void tic(int[] inputs){
-    }
-
-    public void render(Graphics g) {
-    }
+    @Virtual
+    public void tic(int[] inputs){}
+    @Virtual
+    public void render(Graphics g) {}
 }

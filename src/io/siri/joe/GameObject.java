@@ -48,6 +48,7 @@ public abstract class GameObject {
      *
      * @param inputs Keys being pressed on the frame.
      */
+    @Virtual
     public void tic(int[] inputs){}
 
     /**
@@ -55,6 +56,7 @@ public abstract class GameObject {
      *
      * @param g The Graphics Component to Draw to.
      */
+    @Virtual
     public void render(Graphics g){}
 
     /**
