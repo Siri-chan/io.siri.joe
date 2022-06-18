@@ -52,6 +52,11 @@ public class MusicComponent extends Component {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Handles User Control of Music Playback through Keybinds.
+     * @author Siri
+     */
     @Override
     public void tic(int[] inputs){
         for (int keyCode : inputs){
