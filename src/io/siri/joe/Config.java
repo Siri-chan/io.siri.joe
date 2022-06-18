@@ -37,10 +37,11 @@ public class Config {
      *
      * @param pkgid  The name of the game's Java Package.
      * @param author The Author(s) of the Game.
+     * @author Siri
      */
     public Config(String pkgid, String author) {
         this.pkgid = pkgid;
         this.author = author;
     }
-    //maybe window resizable bool
+    //todo maybe window resizable bool
 }

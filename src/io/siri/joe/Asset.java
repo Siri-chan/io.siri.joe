@@ -3,6 +3,11 @@ package io.siri.joe;
 import java.io.File;
 import java.net.URI;
 
+/**
+ * Asset is a small, abstract wrapper class build atop {@link java.io.File}.
+ * Used for handling validation of specific asset types.
+ * @author Siri
+ */
 public abstract class Asset extends File {
     /**
      * Creates a new {@code File} instance by converting the given

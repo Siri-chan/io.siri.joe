@@ -1,4 +1,8 @@
 package io.siri.joe;
 
-public class InvalidAssetFileException extends Exception{
-}
+/**
+ * Exception thrown when an Asset fails its validity checks.
+ * @see Asset
+ * @author Siri
+ */
+public class InvalidAssetFileException extends Exception {}

@@ -33,6 +33,7 @@ public class Core extends Canvas implements Runnable {
      *
      * @param cfg The Configuration of Core.
      * @see io.siri.joe.Config
+     * @author Siri
      */
     public void init(Config cfg) {
         config = cfg;

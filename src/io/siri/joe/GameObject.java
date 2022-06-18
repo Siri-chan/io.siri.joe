@@ -5,6 +5,7 @@ import java.util.*;
 
 /**
  * An abstract class designed to be overridden for every object in the game. Contains {@link Component}s, Position and Scale by Default.
+ * @author Siri
  */
 public abstract class GameObject {
     /**

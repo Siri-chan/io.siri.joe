@@ -53,6 +53,13 @@ public class Handler {
         this.objs.remove(obj);
     }
 
+    /**
+     * Adds an integer keycode to the handler.
+     *
+     * @param input the input
+     * @see java.awt.event.KeyEvent
+     * @author Siri
+     */
     public void addInput(int input) {
         inputs = IntStream.concat(Arrays.stream(inputs), Arrays.stream(new int[]{input})).toArray();
     }
