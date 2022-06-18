@@ -6,80 +6,170 @@ import io.siri.joe.Component;
 import java.awt.*;
 import java.util.*;
 
+/**
+ * A Particle Trail Component for Moving GameObjects
+ * @implNote Should probably be abstracted by some ParticleSystem that has the Particle inner-class and all the particle settings,
+ *              because it would make it easier to implement other types of particle effect.
+ * @see io.siri.joe.Component
+ * @see Particle
+ * @author Siri
+ */
 public class ParticleTrail extends Component {
     private float alpha = 1;
     private Vector2Int velocity = new Vector2Int();
     private Vector2Int pos, offset = new Vector2Int();
     private Color c = Color.magenta;
-    private Dimension d;
+    private Dimension scale;
     private float life = 4.0f, baseLife;
     public boolean enabled = true; //todo make this on every component
     public long lasttime = System.currentTimeMillis();
     public long frequency;
-
     LinkedList<Particle> particles = new LinkedList<>();
 
-    public ParticleTrail(GameObject parent, Dimension d, long frequency) {
+    /**
+     * Instantiates a new {@link ParticleTrail}.
+     *
+     * @param parent The parent {@linkplain GameObject}. In 99% of cases, use the keyword `this`.
+     * @param scale The size of a given particle.
+     * @param frequency How often (in milliseconds) a new particle should appear.
+     * @author Siri
+     */
+    public ParticleTrail(GameObject parent, Dimension scale, long frequency) {
         super(parent);
-        this.d = d;
+        this.scale = scale;
         this.frequency = frequency;
         pos = parent.getPos();
         baseLife = life;
     }
-    public ParticleTrail(GameObject parent, Dimension d, long frequency, Vector2Int velocity) {
+
+    /**
+     * Instantiates a new {@link ParticleTrail}.
+     *
+     * @param parent The parent {@linkplain GameObject}. In 99% of cases, use the keyword `this`.
+     * @param scale The size of a given particle.
+     * @param frequency How often (in milliseconds) a new particle should appear.
+     * @param velocity The velocity of each particle.
+     * @author Siri
+     */
+    public ParticleTrail(GameObject parent, Dimension scale, long frequency, Vector2Int velocity) {
         super(parent);
-        this.d = d;
+        this.scale = scale;
         this.frequency = frequency;
         this.velocity = velocity;
         pos = parent.getPos();
         baseLife = life;
     }
-    public ParticleTrail(GameObject parent, Dimension d, long frequency, Vector2 offset) {
+
+    /**
+     * Instantiates a new {@link ParticleTrail}.
+     *
+     * @param parent The parent {@linkplain GameObject}. In 99% of cases, use the keyword `this`.
+     * @param scale The size of a given particle.
+     * @param frequency How often (in milliseconds) a new particle should appear.
+     * @param offset The offset from the parent object the particles should appear at.
+     * @author Siri
+     */
+    public ParticleTrail(GameObject parent, Dimension scale, long frequency, Vector2 offset) {
         super(parent);
-        this.d = d;
+        this.scale = scale;
         this.frequency = frequency;
         pos = offset.toInt();
         this.offset = offset.toInt();
         baseLife = life;
     }
-    public ParticleTrail(GameObject parent, Dimension d, long frequency, Vector2Int offset, Vector2Int velocity) {
+
+    /**
+     * Instantiates a new {@link ParticleTrail}.
+     *
+     * @param parent The parent {@linkplain GameObject}. In 99% of cases, use the keyword `this`.
+     * @param scale The size of a given particle.
+     * @param frequency How often (in milliseconds) a new particle should appear.
+     * @param offset The offset from the parent object the particles should appear at.
+     * @param velocity The velocity of each particle.
+     * @author Siri
+     */
+    public ParticleTrail(GameObject parent, Dimension scale, long frequency, Vector2Int offset, Vector2Int velocity) {
         super(parent);
-        this.d = d;
+        this.scale = scale;
         this.frequency = frequency;
         this.velocity = velocity;
         pos = offset;
         this.offset = offset;
         baseLife = life;
     }
-    public ParticleTrail(GameObject parent, Dimension d, long frequency, Color color) {
+
+    /**
+     * Instantiates a new {@link ParticleTrail}.
+     *
+     * @param parent The parent {@linkplain GameObject}. In 99% of cases, use the keyword `this`.
+     * @param scale The size of a given particle.
+     * @param frequency How often (in milliseconds) a new particle should appear.
+     * @param color The color of generated particles.
+     * @author Siri
+     */
+    public ParticleTrail(GameObject parent, Dimension scale, long frequency, Color color) {
         super(parent);
-        this.d = d;
+        this.scale = scale;
         this.frequency = frequency;
         c = color;
         pos = parent.getPos();
         baseLife = life;
     }
-    public ParticleTrail(GameObject parent, Dimension d, long frequency, Color color, Vector2Int velocity) {
+
+    /**
+     * Instantiates a new {@link ParticleTrail}.
+     *
+     * @param parent The parent {@linkplain GameObject}. In 99% of cases, use the keyword `this`.
+     * @param scale The size of a given particle.
+     * @param frequency How often (in milliseconds) a new particle should appear.
+     * @param color The color of generated particles.
+     * @param velocity The velocity of each particle.
+     * @author Siri
+     */
+    public ParticleTrail(GameObject parent, Dimension scale, long frequency, Color color, Vector2Int velocity) {
         super(parent);
-        this.d = d;
+        this.scale = scale;
         this.frequency = frequency;
         c = color;
         this.velocity = velocity;
         pos = parent.getPos();
         baseLife = life;
     }
-    public ParticleTrail(GameObject parent, Dimension d, long frequency, Color color, Vector2 offset) {
+
+    /**
+     * Instantiates a new {@link ParticleTrail}.
+     *
+     * @param parent The parent {@linkplain GameObject}. In 99% of cases, use the keyword `this`.
+     * @param scale The size of a given particle.
+     * @param frequency How often (in milliseconds) a new particle should appear.
+     * @param color The color of generated particles.
+     * @param offset The offset from the parent object the particles should appear at.
+     * @author Siri
+     */
+    public ParticleTrail(GameObject parent, Dimension scale, long frequency, Color color, Vector2 offset) {
         super(parent);
-        this.d = d;
+        this.scale = scale;
         this.frequency = frequency;
         c = color;
         pos = offset.toInt();
         this.offset = offset.toInt();
         baseLife = life;
     }
-    public ParticleTrail(GameObject parent, Dimension d, long frequency, Color color, Vector2Int offset, Vector2Int velocity) {
+
+    /**
+     * Instantiates a new {@link ParticleTrail}.
+     *
+     * @param parent The parent {@linkplain GameObject}. In 99% of cases, use the keyword `this`.
+     * @param scale The size of a given particle.
+     * @param frequency How often (in milliseconds) a new particle should appear.
+     * @param color The color of generated particles.
+     * @param offset The offset from the parent object the particles should appear at.
+     * @param velocity The velocity of each particle.
+     * @author Siri
+     */
+    public ParticleTrail(GameObject parent, Dimension scale, long frequency, Color color, Vector2Int offset, Vector2Int velocity) {
         super(parent);
-        this.d = d;
+        this.scale = scale;
         this.frequency = frequency;
         c = color;
         this.velocity = velocity;
@@ -87,35 +177,79 @@ public class ParticleTrail extends Component {
         this.offset = offset;
         baseLife = life;
     }
-    public ParticleTrail(GameObject parent, Dimension d, long frequency, float lifeTime) {
+
+    /**
+     * Instantiates a new {@link ParticleTrail}.
+     *
+     * @param parent The parent {@linkplain GameObject}. In 99% of cases, use the keyword `this`.
+     * @param scale The size of a given particle.
+     * @param frequency How often (in milliseconds) a new particle should appear.
+     * @param lifeTime The amount of time (in tics / 10) that it takes for the particle to disappear.
+     * @author Siri
+     */
+    public ParticleTrail(GameObject parent, Dimension scale, long frequency, float lifeTime) {
         super(parent);
-        this.d = d;
+        this.scale = scale;
         this.frequency = frequency;
         pos = parent.getPos();
         life = Maths.clamp(lifeTime, 0, 10);
         baseLife = life;
     }
-    public ParticleTrail(GameObject parent, Dimension d, long frequency, Vector2Int velocity, float lifeTime) {
+
+    /**
+     * Instantiates a new {@link ParticleTrail}.
+     *
+     * @param parent The parent {@linkplain GameObject}. In 99% of cases, use the keyword `this`.
+     * @param scale The size of a given particle.
+     * @param frequency How often (in milliseconds) a new particle should appear.
+     * @param velocity The velocity of each particle.
+     * @param lifeTime The amount of time (in tics / 10) that it takes for the particle to disappear.
+     * @author Siri
+     */
+    public ParticleTrail(GameObject parent, Dimension scale, long frequency, Vector2Int velocity, float lifeTime) {
         super(parent);
-        this.d = d;
+        this.scale = scale;
         this.frequency = frequency;
         this.velocity = velocity;
         pos = parent.getPos();
         life = Maths.clamp(lifeTime, 0, 10);
         baseLife = life;
     }
-    public ParticleTrail(GameObject parent, Dimension d, long frequency, Vector2 offset, float lifeTime) {
+
+    /**
+     * Instantiates a new {@link ParticleTrail}.
+     *
+     * @param parent The parent {@linkplain GameObject}. In 99% of cases, use the keyword `this`.
+     * @param scale The size of a given particle.
+     * @param frequency How often (in milliseconds) a new particle should appear.
+     * @param offset The offset from the parent object the particles should appear at.
+     * @param lifeTime The amount of time (in tics / 10) that it takes for the particle to disappear.
+     * @author Siri
+     */
+    public ParticleTrail(GameObject parent, Dimension scale, long frequency, Vector2 offset, float lifeTime) {
         super(parent);
-        this.d = d;
+        this.scale = scale;
         this.frequency = frequency;
         pos = offset.toInt();
         this.offset = offset.toInt();
         life = Maths.clamp(lifeTime, 0, 10);
         baseLife = life;
     }
-    public ParticleTrail(GameObject parent, Dimension d, long frequency, Vector2Int offset, Vector2Int velocity, float lifeTime) {
+
+    /**
+     * Instantiates a new {@link ParticleTrail}.
+     *
+     * @param parent The parent {@linkplain GameObject}. In 99% of cases, use the keyword `this`.
+     * @param scale The size of a given particle.
+     * @param frequency How often (in milliseconds) a new particle should appear.
+     * @param offset The offset from the parent object the particles should appear at.
+     * @param velocity The velocity of each particle.
+     * @param lifeTime The amount of time (in tics / 10) that it takes for the particle to disappear.
+     * @author Siri
+     */
+    public ParticleTrail(GameObject parent, Dimension scale, long frequency, Vector2Int offset, Vector2Int velocity, float lifeTime) {
         super(parent);
-        this.d = d;
+        this.scale = scale;
         this.frequency = frequency;
         this.velocity = velocity;
         pos = offset;
@@ -123,18 +257,41 @@ public class ParticleTrail extends Component {
         life = Maths.clamp(lifeTime, 0, 10);
         baseLife = life;
     }
-    public ParticleTrail(GameObject parent, Dimension d, long frequency, Color color, float lifeTime) {
+
+    /**
+     * Instantiates a new {@link ParticleTrail}.
+     *
+     * @param parent The parent {@linkplain GameObject}. In 99% of cases, use the keyword `this`.
+     * @param scale The size of a given particle.
+     * @param frequency How often (in milliseconds) a new particle should appear.
+     * @param color The color of generated particles.
+     * @param lifeTime The amount of time (in tics / 10) that it takes for the particle to disappear.
+     * @author Siri
+     */
+    public ParticleTrail(GameObject parent, Dimension scale, long frequency, Color color, float lifeTime) {
         super(parent);
-        this.d = d;
+        this.scale = scale;
         this.frequency = frequency;
         c = color;
         pos = parent.getPos();
         life = Maths.clamp(lifeTime, 0, 10);
         baseLife = life;
     }
-    public ParticleTrail(GameObject parent, Dimension d, long frequency, Color color, Vector2Int velocity, float lifeTime) {
+
+    /**
+     * Instantiates a new {@link ParticleTrail}.
+     *
+     * @param parent The parent {@linkplain GameObject}. In 99% of cases, use the keyword `this`.
+     * @param scale The size of a given particle.
+     * @param frequency How often (in milliseconds) a new particle should appear.
+     * @param color The color of generated particles.
+     * @param velocity The velocity of each particle.
+     * @param lifeTime The amount of time (in tics / 10) that it takes for the particle to disappear.
+     * @author Siri
+     */
+    public ParticleTrail(GameObject parent, Dimension scale, long frequency, Color color, Vector2Int velocity, float lifeTime) {
         super(parent);
-        this.d = d;
+        this.scale = scale;
         this.frequency = frequency;
         c = color;
         this.velocity = velocity;
@@ -142,9 +299,21 @@ public class ParticleTrail extends Component {
         life = Maths.clamp(lifeTime, 0, 10);
         baseLife = life;
     }
-    public ParticleTrail(GameObject parent, Dimension d, long frequency, Color color, Vector2 offset, float lifeTime) {
+
+    /**
+     * Instantiates a new {@link ParticleTrail}.
+     *
+     * @param parent The parent {@linkplain GameObject}. In 99% of cases, use the keyword `this`.
+     * @param scale The size of a given particle.
+     * @param frequency How often (in milliseconds) a new particle should appear.
+     * @param color The color of generated particles.
+     * @param offset The offset from the parent object the particles should appear at.
+     * @param lifeTime The amount of time (in tics / 10) that it takes for the particle to disappear.
+     * @author Siri
+     */
+    public ParticleTrail(GameObject parent, Dimension scale, long frequency, Color color, Vector2 offset, float lifeTime) {
         super(parent);
-        this.d = d;
+        this.scale = scale;
         this.frequency = frequency;
         c = color;
         pos = offset.toInt();
@@ -152,9 +321,22 @@ public class ParticleTrail extends Component {
         life = Maths.clamp(lifeTime, 0, 10);
         baseLife = life;
     }
-    public ParticleTrail(GameObject parent, Dimension d, long frequency, Color color, Vector2Int offset, Vector2Int velocity, float lifeTime) {
+
+    /**
+     * Instantiates a new {@link ParticleTrail}.
+     *
+     * @param parent The parent {@linkplain GameObject}. In 99% of cases, use the keyword `this`.
+     * @param scale The size of a given particle.
+     * @param frequency How often (in milliseconds) a new particle should appear.
+     * @param color The color of generated particles.
+     * @param offset The offset from the parent object the particles should appear at.
+     * @param velocity The velocity of each particle.
+     * @param lifeTime The amount of time (in tics / 10) that it takes for the particle to disappear.
+     * @author Siri
+     */
+    public ParticleTrail(GameObject parent, Dimension scale, long frequency, Color color, Vector2Int offset, Vector2Int velocity, float lifeTime) {
         super(parent);
-        this.d = d;
+        this.scale = scale;
         c = color;
         this.frequency = frequency;
         this.velocity = velocity;
@@ -163,6 +345,7 @@ public class ParticleTrail extends Component {
         life = Maths.clamp(lifeTime, 0, 10);
         baseLife = life;
     }
+
     private AlphaComposite makeTransparent(float alpha){
         int type = AlphaComposite.SRC_OVER;
         return AlphaComposite.getInstance(type, alpha);
@@ -173,7 +356,7 @@ public class ParticleTrail extends Component {
         if(!enabled || removeLock) return;
         if(lasttime + frequency < System.currentTimeMillis()) {
             pos = parent.getPos().add(offset);
-            particles.add(new Particle(this, d, c, pos, velocity, life));
+            particles.add(new Particle(this, scale, c, pos, velocity, life));
             lasttime = System.currentTimeMillis();
         }
         for (var part : particles) {
@@ -191,14 +374,86 @@ public class ParticleTrail extends Component {
             part.render(g);
         }
     }
-    LinkedList<Particle> removeQ = new LinkedList<>();
+
+    Queue<Particle> removeQ = new LinkedList<>();
     boolean removeLock;
-    void remove(){
+    private void remove(){
         removeLock = true;
-        for (var p : removeQ) {
+        Particle p = removeQ.remove();
+        do {
             particles.remove(p);
+            p = removeQ.remove();
         }
-        removeQ = new LinkedList<>();
+        while (p != null);
         removeLock = false;
+    }
+
+    /**
+     * A particle subclass for {@link ParticleTrail}.
+     *
+     * @author Siri
+     * @implNote Is non-static because it should never be instantiated without a {@link ParticleTrail}
+     * @see ParticleTrail
+     */
+    protected class Particle {
+        /**
+         * The Parent {@link ParticleTrail}.
+         */
+        ParticleTrail particleTrail;
+        private float alpha = 1;
+        private Vector2Int velocity = new Vector2Int();
+        private Vector2Int pos;
+        private Color c = Color.magenta;
+        private Dimension scale;
+        private float life = 4.0f;
+        private final float baseLife;
+
+        /**
+         * Instantiates a new {@link Particle}.
+         *
+         * @param parent The parent {@linkplain GameObject}. In 99% of cases, use the keyword `this`.
+         * @param scale The size of a given particle.
+         * @param color The color of generated particles.
+         * @param velocity The velocity of each particle.
+         * @param lifeTime The amount of time (in tics / 10) that it takes for the particle to disappear.
+         * @author Siri
+         */
+        public Particle(ParticleTrail parent, Dimension scale, Color color, Vector2Int pos, Vector2Int velocity, float lifeTime) {
+            this.scale = scale;
+            particleTrail = parent;
+            c = color;
+            this.velocity = velocity;
+            this.pos = pos;
+            life = Maths.clamp(lifeTime, 0, 100);
+            baseLife = life;
+        }
+
+        private AlphaComposite makeTransparent(float alpha){
+            int type = AlphaComposite.SRC_OVER;
+            return AlphaComposite.getInstance(type, alpha);
+        }
+
+        void tic() {
+            life -= 0.1f; //todo make this delta
+            alpha = life / baseLife;
+            pos = pos.add(velocity);
+            if (life < 0.1f){
+                particleTrail.removeQ.add(this);
+                particleTrail = null;
+                alpha = 0;
+                velocity = null;
+                pos = null;
+                c = null;
+                scale = null;
+            }
+        }
+
+        void render(Graphics g) {
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setComposite(makeTransparent(alpha));
+            g.setColor(c);
+            g.fillRect(pos.x, pos.y, scale.width, scale.height);
+            g2d.setComposite(makeTransparent(1));
+        }
     }
 }
