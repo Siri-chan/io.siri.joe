@@ -375,16 +375,14 @@ public class ParticleTrail extends Component {
         }
     }
 
-    Queue<Particle> removeQ = new LinkedList<>();
+    LinkedList<Particle> removeQ = new LinkedList<>();
     boolean removeLock;
-    private void remove(){
+    void remove(){
         removeLock = true;
-        Particle p = removeQ.remove();
-        do {
+        for (var p : removeQ) {
             particles.remove(p);
-            p = removeQ.remove();
         }
-        while (p != null);
+        removeQ = new LinkedList<>();
         removeLock = false;
     }
 
