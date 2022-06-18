@@ -51,6 +51,7 @@ public abstract class GameObject {
      */
     @Virtual
     public void tic(int[] inputs){}
+    //todo maybe add a second tic that doesnt add inputs for non-player objects, like let the inputs be an overflow or smth idk.
 
     /**
      * Render. Draws as often as possible.

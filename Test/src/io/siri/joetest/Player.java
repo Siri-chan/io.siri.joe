@@ -41,7 +41,7 @@ public class Player extends GameObject {
     public void tic(int[] inputs) {
         //Input Handling
         for (int keyCode : inputs) {
-            //this shouldn't be a switch, probably breaks for loop if input matches event
+            //this shouldn't be a switch, it breaks the for loop if input matches event
             switch (keyCode) {
                 case KeyEvent.VK_UP -> pos = pos.add(Vector2Int.UP.multiply(6));
 
@@ -63,6 +63,9 @@ public class Player extends GameObject {
                 System.out.printf("health: %d\n", health);
             }
         }
+        //todo should also check if player is out of bounds
+
+        //Health Popup
         t.contents = String.format("HP: %d", health);
         if(health < 990){
             t.color = Color.red;
