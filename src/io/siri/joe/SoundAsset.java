@@ -4,8 +4,18 @@ import javax.sound.sampled.AudioSystem;
 import java.io.File;
 import java.net.URI;
 
+/**
+ * An asset-handling class for Sound Clips
+ */
 public class SoundAsset extends Asset {
-    boolean checkValidity(){
+    /**
+     * Checks the Validity of the SoundAsset
+     *
+     * @return True if the Audio File is Valid
+     * @author Siri
+     */
+    @Override
+    public boolean checkValidity(){
         try {
             var q = AudioSystem.getAudioInputStream( this);
             var c = AudioSystem.getClip();
@@ -24,11 +34,10 @@ public class SoundAsset extends Asset {
      * the empty string, then the result is the empty abstract pathname.
      *
      * @param pathname A pathname string
-     * @throws NullPointerException If the {@code pathname} argument is {@code null}
+     * @throws InvalidAssetFileException the invalid asset file exception
      */
     public SoundAsset(String pathname) throws InvalidAssetFileException {
         super(pathname);
-        if (!checkValidity()) throw new InvalidAssetFileException();
     }
 
     /**
@@ -53,11 +62,10 @@ public class SoundAsset extends Asset {
      *
      * @param parent The parent pathname string
      * @param child  The child pathname string
-     * @throws NullPointerException If {@code child} is {@code null}
+     * @throws InvalidAssetFileException the invalid asset file exception
      */
     public SoundAsset(String parent, String child) throws InvalidAssetFileException {
         super(parent, child);
-        if (!checkValidity()) throw new InvalidAssetFileException();
     }
 
     /**
@@ -82,11 +90,10 @@ public class SoundAsset extends Asset {
      *
      * @param parent The parent abstract pathname
      * @param child  The child pathname string
-     * @throws NullPointerException If {@code child} is {@code null}
+     * @throws InvalidAssetFileException the invalid asset file exception
      */
     public SoundAsset(File parent, String child) throws InvalidAssetFileException {
         super(parent, child);
-        if (!checkValidity()) throw new InvalidAssetFileException();
     }
 
     /**
@@ -101,7 +108,7 @@ public class SoundAsset extends Asset {
      *
      * <blockquote><code>
      * new File(</code><i>&nbsp;f</i><code>.{@link #toURI()
-     * toURI}()).equals(</code><i>&nbsp;f</i><code>.{@link #getAbsoluteFile() getAbsoluteFile}())
+     * toURI}*()).equals(</code><i>&nbsp;f</i><code>.{@link #getAbsoluteFile() getAbsoluteFile}())
      * </code></blockquote>
      * <p>
      * so long as the original abstract pathname, the URI, and the new abstract
@@ -111,17 +118,13 @@ public class SoundAsset extends Asset {
      * on one operating system is converted into an abstract pathname in a
      * virtual machine on a different operating system.
      *
-     * @param uri An absolute, hierarchical URI with a scheme equal to
-     *            {@code "file"}, a non-empty path component, and undefined
-     *            authority, query, and fragment components
-     * @throws NullPointerException     If {@code uri} is {@code null}
-     * @throws IllegalArgumentException If the preconditions on the parameter do not hold
-     * @see #toURI()
+     * @param uri An absolute, hierarchical URI with a scheme equal to            {@code "file"}, a non-empty path component, and undefined            authority, query, and fragment components
+     * @throws InvalidAssetFileException the invalid asset file exception
+     * @see #toURI() #toURI()
      * @see URI
      * @since 1.4
      */
     public SoundAsset(URI uri) throws InvalidAssetFileException {
         super(uri);
-        if (!checkValidity()) throw new InvalidAssetFileException();
     }
 }
