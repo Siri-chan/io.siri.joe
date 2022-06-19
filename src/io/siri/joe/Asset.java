@@ -9,6 +9,7 @@ import java.net.URI;
  * @author Siri
  */
 public abstract class Asset extends File {
+    public abstract boolean checkValidity();
     /**
      * Creates a new {@code File} instance by converting the given
      * pathname string into an abstract pathname.  If the given string is
@@ -17,8 +18,9 @@ public abstract class Asset extends File {
      * @param pathname A pathname string
      * @throws NullPointerException If the {@code pathname} argument is {@code null}
      */
-    public Asset(String pathname) {
+    public Asset(String pathname) throws InvalidAssetFileException {
         super(pathname);
+        if (!checkValidity()) throw new InvalidAssetFileException();
     }
 
     /**
@@ -45,8 +47,9 @@ public abstract class Asset extends File {
      * @param child  The child pathname string
      * @throws NullPointerException If {@code child} is {@code null}
      */
-    public Asset(String parent, String child) {
+    public Asset(String parent, String child) throws InvalidAssetFileException {
         super(parent, child);
+        if (!checkValidity()) throw new InvalidAssetFileException();
     }
 
     /**
@@ -73,8 +76,9 @@ public abstract class Asset extends File {
      * @param child  The child pathname string
      * @throws NullPointerException If {@code child} is {@code null}
      */
-    public Asset(File parent, String child) {
+    public Asset(File parent, String child) throws InvalidAssetFileException {
         super(parent, child);
+        if (!checkValidity()) throw new InvalidAssetFileException();
     }
 
     /**
@@ -108,7 +112,8 @@ public abstract class Asset extends File {
      * @see URI
      * @since 1.4
      */
-    public Asset(URI uri) {
+    public Asset(URI uri) throws InvalidAssetFileException {
         super(uri);
+        if (!checkValidity()) throw new InvalidAssetFileException();
     }
 }

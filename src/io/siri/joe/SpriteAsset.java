@@ -5,6 +5,7 @@ import java.io.File;
 import java.net.URI;
 
 public class SpriteAsset extends Asset{
+    @Override
     public boolean checkValidity(){
         try {
             ImageIO.read(this);
@@ -23,7 +24,6 @@ public class SpriteAsset extends Asset{
      */
     public SpriteAsset(String pathname) throws InvalidAssetFileException {
         super(pathname);
-        if (!checkValidity()) throw new InvalidAssetFileException();
     }
 
     /**
@@ -52,7 +52,6 @@ public class SpriteAsset extends Asset{
      */
     public SpriteAsset(String parent, String child) throws InvalidAssetFileException {
         super(parent, child);
-        if (!checkValidity()) throw new InvalidAssetFileException();
     }
 
     /**
@@ -81,7 +80,6 @@ public class SpriteAsset extends Asset{
      */
     public SpriteAsset(File parent, String child) throws InvalidAssetFileException {
         super(parent, child);
-        if (!checkValidity()) throw new InvalidAssetFileException();
     }
 
     /**
@@ -117,6 +115,5 @@ public class SpriteAsset extends Asset{
      */
     public SpriteAsset(URI uri) throws InvalidAssetFileException {
         super(uri);
-        if (!checkValidity()) throw new InvalidAssetFileException();
     }
 }
