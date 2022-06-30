@@ -7,8 +7,50 @@ _Just [an] Ordinary Engine._
 # Using Joe.
 
 Full Wiki available eventually.
+<!--Needs to be a section here about joePack and submodules.
+recommend commands: ```git config --global alias.clone "clone --recurse-submodules" ; git config --global alias.pull "pull --recurse-submodules"```-->
 # Compiling Joe.
 # Modifying Joe.
+
+# Versioning
+Joe uses Semantic Versioning `2.0.0` for Version Numbers.
+Check [the Specification](https://semver.org/) for more information.
+
+There should be a unique branch for every minor version past `1.0.x`, which will recieve every security and bug patch from master, 
+so long as the patches do not make any outward facing API changes.
+These Branches will have a tag marking where the precompiled binaries were released, 
+and should be checked for any important patches before downloading and using precompiled binaries.
+
+Please also be aware that:
+1. Minor Version branches will be depreciated with each major release.
+2. Documentation Changes (such as to this README, or to JavaDoc within the Source)
+**DO <u>NOT</u>** increment the Semantic Versioning Patch Number 
+
+The Version of JOE that this readme is packaged with is 0.1.0 
+(This version with text rendering is the first to have SemVer)
+
+# Documentation
+I have tried my best to provide decent documentation of as many public-facing classes as possible, 
+if there is no documentation for a given class, function or property, take a peek at the code, and if you can, write some.
+
+Here are some guidelines for writing JavaDoc for this project:
+1. Any JavaDoc without an `@since` tag is likely from pre-1.0.0
+2. The `@version` tag documents the version of the function/class, and **not** the version of the project the function/class was written in.
+3. `@version` uses SemVer-like `MAJOR.MINOR`, and should only be updated in case of functionality changes.
+4. JavaDoc Missing a `@version` tag can be presumed to be somewhere within the `1.x` range, and should be moved to `2.0` if any breaking changes arise.
+5. Any JavaDoc without an `@author` tag should have one *or more* added by checking `git blame`.
+6. The JavaDoc `@author` tag (_at least in this project_) declares the author of **the code**, and not the documentation. 
+7. If you want credit for writing documentation, and do not already have an `@author` tag within the JavaDoc, add an additional `@author` tag and suffix it with `:docs` as below.
+```java
+/**
+ * For Example...
+ * @author Siri
+ * @author John_Smith
+ * @author JaneDoe2:docs
+ */
+```
+8. Typically, `@apiNote` is used for forward-facing notes to users, and `@implNote` is used to annotate about the internal architecture.
+
 
 # Joe's Inspiration, Contributors, Testers and Friends.
 ## Inspiration
@@ -44,6 +86,8 @@ Written Using **JetBrains IntelliJ IDEA**, though (hopefully) **Eclipse** and ot
 
 
 # Licensing Joe.
+As of version 0.1.0, JOE is licensed under the Mozilla Public License (MPL), and Copyright 2022 Kira "Siri" K.
+Breach of this license is illegal under international Copyright law.
 
 # ToDos:
 - [ ] Write JavaDoc for everything

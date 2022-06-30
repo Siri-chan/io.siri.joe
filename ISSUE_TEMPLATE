@@ -1,0 +1,45 @@
+# Meta:
+## Issue Title
+## Labels 
+### Initial Labels
+`bug` - See **Bug Report** Section for template.  
+`enhancement` - See **Feature Request** Section for template.  
+`documentation` - See **Documentation Issue** Section for template.  
+`question` - See **Question** Section for template.
+### Appendices
+(_please respect the application of these, and only let maintainers apply them_)  
+`duplicate` - This issue already exists  
+`good first issue` - This issue has an easy fix (that I'm too lazy to implement)  
+`help wanted` - I don't know what I'm doing with this issue  
+`invalid` - Issue some way doesn't fit the template or does something else wrong  
+`wontfix` - Label for intentional decisions and other issues that will not be worked on 
+(_I may remove this label if somebody else starts work on an issue_)
+
+<!-- Things like wontfix and duplicate go here -->
+
+# Bug Report
+<!-- Label: bug -->
+## Description
+## Stack Trace(s)
+(if available)
+## How to Replicate
+(if known)
+## Additional Pondering/Comments
+
+# Documentation Issue
+<!-- Label: documentation -->
+## Description
+## Link/Location
+## Proposed Changes
+
+# Feature Request
+<!-- Label: enhancement -->
+## Description
+## Reason for Proposal
+## Proposed Changes
+## Additional Pondering/Comments
+
+# Question
+<!-- Label: question -->
+## Question
+(Question Goes Here... Try provide context)
