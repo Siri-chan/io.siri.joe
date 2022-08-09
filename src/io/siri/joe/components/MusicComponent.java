@@ -9,6 +9,7 @@ import io.siri.joe.*;
 public class MusicComponent extends Component {
     String id;
     MusicControls musicControls;
+    boolean playState;
 
     /**
      * Initialises the Music Component without any Player Keybindings.
@@ -29,6 +30,7 @@ public class MusicComponent extends Component {
             e.printStackTrace();
         }
         Core.c.music.play(id);
+        playState = true;
     }
     /**
      * Initialises the Music Component without any Player Keybindings.
@@ -50,10 +52,13 @@ public class MusicComponent extends Component {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Core.c.music.play(id);
+        playState = true;
     }
 
     /**
      * Handles User Control of Music Playback through Keybinds.
+     * @apiNote Toggling can be broken when not controlled through one of these components
      * @author Siri
      */
     @Override
@@ -63,18 +68,31 @@ public class MusicComponent extends Component {
             //this can't be a switch bc music controls aren't constant.
             if (keyCode == musicControls.play) {
                 Core.c.music.play(id);
+                playState = true;
             }
             if (keyCode == musicControls.resume) {
                 Core.c.music.resume(id);
+                playState = true;
             }
             if (keyCode == musicControls.pause) {
                 Core.c.music.pause(id);
+                playState = false;
             }
             if (keyCode == musicControls.stop) {
                 Core.c.music.stop(id);
+                Core.c.music.play(id);
+                playState = false;
             }
             if (keyCode == musicControls.restart) {
                 Core.c.music.restart(id);
+                playState = true;
+            }
+            if (keyCode == musicControls.toggle) {
+                if (playState) {
+                    Core.c.music.pause(id);
+                } else {
+                    Core.c.music.resume(id);
+                }
             }
         }
     }
@@ -86,12 +104,12 @@ public class MusicComponent extends Component {
      * @author Siri
      */
     //this has to be a full class and not just a struct because fuck java.
-    //because this is here, todo: make a pause/resume toggle.
     public static class MusicControls {
         public int play = -1;
         public int resume = -1;
         public int pause = -1;
         public int stop = -1;
         public int restart = -1;
+        public int toggle = -1;
     }
 }
