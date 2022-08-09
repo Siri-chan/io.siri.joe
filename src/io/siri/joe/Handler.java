@@ -13,10 +13,10 @@ public class Handler {
     public LinkedList<GameObject> objs = new LinkedList<>();
     int[] inputs = {};
 
-    void tic() {
+    void tic(double delta) {
         for (GameObject obj : objs) {
-            obj.componentTic(inputs);
-            obj.tic(inputs);
+            obj.componentTic(delta, inputs);
+            obj.tic(delta, inputs);
         }
         inputs = new int[]{};
     }

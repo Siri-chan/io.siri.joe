@@ -24,7 +24,7 @@ public class Enemy extends GameObject{
     int speed = 6;
 
     @Override
-    public void tic(int[] inputs) {
+    public void tic(double delta, int[] inputs) {
         pos.x += speed;
         if(pos.x < 0 || pos.x > Main.cfg.resolution.width){
             speed *= -1;

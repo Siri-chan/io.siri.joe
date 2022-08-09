@@ -58,7 +58,7 @@ public class MusicComponent extends Component {
      * @author Siri
      */
     @Override
-    public void tic(int[] inputs){
+    public void tic(double delta, int[] inputs){
         for (int keyCode : inputs){
             //this can't be a switch bc music controls aren't constant.
             if (keyCode == musicControls.play) {

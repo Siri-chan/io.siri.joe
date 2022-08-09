@@ -38,7 +38,7 @@ public class Player extends GameObject {
     }
 
     @Override
-    public void tic(int[] inputs) {
+    public void tic(double delta, int[] inputs) {
         //Input Handling
         for (int keyCode : inputs) {
             //this shouldn't be a switch, it breaks the for loop if input matches event

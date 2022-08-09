@@ -67,7 +67,7 @@ public class Core extends Canvas implements Runnable {
             delta += (now - lastTime) / ns;
             lastTime = now;
             while (delta >= 1) {
-                tic(); //todo give tic the delta
+                tic(delta);
                 delta--;
             }
             if (!running) break;
@@ -92,8 +92,8 @@ public class Core extends Canvas implements Runnable {
         System.err.printf("%s %s %s\n", new SimpleDateFormat("HH:mm:ss.SSS").format(new Date()), prefix, msg);
     }
 
-    void tic() {
-        handler.tic();
+    void tic(double delta) {
+        handler.tic(delta);
     }
 
     void render() {

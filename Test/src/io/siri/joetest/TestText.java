@@ -60,10 +60,11 @@ public class TestText extends GameObject {
     /**
      * Tic. Runs at 60FPS.
      *
+     * @param delta The amount of time since last tic()
      * @param inputs Keys being pressed on the frame.
      */
     @Override
-    public void tic(int[] inputs) {
+    public void tic(double delta, int[] inputs) {
         for (var input : inputs) {
             if (input != VK_Q && input != VK_E)
                 continue;

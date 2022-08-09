@@ -47,10 +47,11 @@ public abstract class GameObject {
     /**
      * Tic. Runs at 60FPS.
      *
+     * @param delta The time taken between tics
      * @param inputs Keys being pressed on the frame.
      */
     @Virtual
-    public void tic(int[] inputs){}
+    public void tic(double delta, int[] inputs){}
     //todo maybe add a second tic that doesnt add inputs for non-player objects, like let the inputs be an overflow or smth idk.
 
     /**
@@ -67,9 +68,9 @@ public abstract class GameObject {
      */
     public LinkedList<Component> components = new LinkedList<>();
 
-    void componentTic(int[] inputs){
+    void componentTic(double delta, int[] inputs){
         for (var component : components) {
-            component.tic(inputs);
+            component.tic(delta, inputs);
         }
     }
 

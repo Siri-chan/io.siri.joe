@@ -352,7 +352,7 @@ public class ParticleTrail extends Component {
     }
 
     @Override
-    public void tic(int[] inputs) {
+    public void tic(double delta, int[] inputs) {
         if(!enabled || removeLock) return;
         if(lasttime + frequency < System.currentTimeMillis()) {
             pos = parent.getPos().add(offset);
@@ -360,7 +360,7 @@ public class ParticleTrail extends Component {
             lasttime = System.currentTimeMillis();
         }
         for (var part : particles) {
-            part.tic();
+            part.tic(delta);
         }
         if(removeQ.size() != 0)
             remove();
@@ -431,8 +431,8 @@ public class ParticleTrail extends Component {
             return AlphaComposite.getInstance(type, alpha);
         }
 
-        void tic() {
-            life -= 0.1f; //todo make this delta
+        void tic(double delta) {
+            life -= delta;
             alpha = life / baseLife;
             pos = pos.add(velocity);
             if (life < 0.1f){

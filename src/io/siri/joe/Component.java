@@ -12,7 +12,7 @@ public class Component {
         this.parent = parent;
     }
     @Virtual
-    public void tic(int[] inputs){}
+    public void tic(double delta, int[] inputs){}
     @Virtual
     public void render(Graphics g) {}
 }
