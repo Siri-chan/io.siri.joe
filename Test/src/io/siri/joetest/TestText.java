@@ -12,7 +12,7 @@ import static java.awt.event.KeyEvent.VK_Q;
 public class TestText extends GameObject {
 
     TextRenderer t;
-    String[] texts = {
+    final String[] texts = {
             /* WARNING: English and Japanese are the only languages I am literate in myself.
             *   Also, character sets with broken afterwards do not work in the given default fonts:
             * ss: Font.SANS_SERIF
