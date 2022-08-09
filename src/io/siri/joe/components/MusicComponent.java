@@ -1,7 +1,6 @@
 package io.siri.joe.components;
 
 import io.siri.joe.*;
-import io.siri.joe.Component;
 
 /**
  * Implements playing music directly to a GameObject near you!
