@@ -399,11 +399,11 @@ public class ParticleTrail extends Component {
          */
         ParticleTrail particleTrail;
         private float alpha = 1;
-        private Vector2Int velocity = new Vector2Int();
+        private Vector2Int velocity;
         private Vector2Int pos;
-        private Color c = Color.magenta;
+        private Color c;
         private Dimension scale;
-        private float life = 4.0f;
+        private float life;
         private final float baseLife;
 
         /**
