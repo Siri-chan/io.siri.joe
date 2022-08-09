@@ -69,6 +69,7 @@ public class TextRenderer extends Component {
 
     @Override
     public void render(Graphics g){
+        if(!enabled) return;
         var g2d = (Graphics2D) g;
         g2d.setColor(color);
         g2d.setFont(font);

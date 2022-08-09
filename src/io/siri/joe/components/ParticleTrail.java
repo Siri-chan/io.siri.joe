@@ -21,7 +21,6 @@ public class ParticleTrail extends Component {
     private Color c = Color.magenta;
     private Dimension scale;
     private float life = 4.0f, baseLife;
-    public boolean enabled = true; //todo make this on every component
     public long lasttime = System.currentTimeMillis();
     public long frequency;
     LinkedList<Particle> particles = new LinkedList<>();

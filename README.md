@@ -26,7 +26,7 @@ Please also be aware that:
 2. Documentation Changes (such as to this README, or to JavaDoc within the Source)
 **DO <u>NOT</u>** increment the Semantic Versioning Patch Number 
 
-The Version of JOE that this readme is packaged with is 0.2.0
+The Version of JOE that this readme is packaged with is 0.3.0
 
 # Documentation
 I have tried my best to provide decent documentation of as many public-facing classes as possible, 
