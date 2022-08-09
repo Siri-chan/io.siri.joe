@@ -21,19 +21,9 @@ public class Main {
         JOE.handler.addObject(new MusicSystem(Vector2Int.ZERO, new Dimension(0,0)));
         JOE.handler.addObject(new TestText(new Vector2Int(100, 100), new Dimension(0,0)));
 
-
-        try {
-            JOE.d.save(d, "/ser.ser");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        SaveData q;
-        try {
-            q = JOE.d.load("/ser.ser");
-        } catch (FileNotFoundException e) {
-            q = new SaveData();
-            e.printStackTrace();
-        }
+        JOE.d.save(d, "/ser.ser");
+        SaveData q = new SaveData();
+        q = JOE.d.load("/ser.ser");
         System.out.println(q.test);
 
         /*
@@ -52,7 +42,7 @@ public class Main {
         } catch (Exception e){
             e.printStackTrace();
         }
-        // `JOE.sfx.play(id/file)` doesnt need a component, because it's a one-liner thats easy to glue on GameObjects
+        // `JOE.sfx.play(id/file)` doesnt need a component, because it's a one-liner that's easy to glue on GameObjects
         */
     }
 }
