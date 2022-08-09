@@ -2,7 +2,6 @@ package io.siri.joe.components;
 
 import io.siri.joe.Component;
 import io.siri.joe.GameObject;
-import io.siri.joe.InvalidAssetFileException;
 import io.siri.joe.SpriteAsset;
 
 import javax.imageio.ImageIO;

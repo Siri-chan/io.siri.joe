@@ -1,7 +1,6 @@
 package io.siri.joe;
 
 import java.io.File;
-import java.nio.channels.FileChannel;
 import java.util.HashMap;
 
 /**
