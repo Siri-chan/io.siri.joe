@@ -59,6 +59,7 @@ public class MusicComponent extends Component {
      */
     @Override
     public void tic(int[] inputs){
+        if (!enabled) return;
         for (int keyCode : inputs){
             //this can't be a switch bc music controls aren't constant.
             if (keyCode == musicControls.play) {

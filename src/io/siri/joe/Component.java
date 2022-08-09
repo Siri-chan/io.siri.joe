@@ -8,11 +8,12 @@ import java.awt.*;
  */
 public class Component {
     protected final GameObject parent;
+    public boolean enabled = true;
     public Component(GameObject parent){
         this.parent = parent;
     }
     @Virtual
     public void tic(int[] inputs){}
     @Virtual
-    public void render(Graphics g) {}
+    public void render(Graphics g){}
 }

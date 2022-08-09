@@ -88,7 +88,7 @@ public class BoxCollider extends Component {
      */
     @Override
     public void render(Graphics g) {
-        if(!showCollider) return;
+        if(!enabled || !showCollider) return;
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(c);
         g2d.draw(getBounds());
