@@ -52,9 +52,8 @@ public class DataManager {
      * @param data Data Class to be serialised.
      * @apiNote Ensure any confidential data (as well as anything else that shouldn't be saved) within the class T is marked as transient.
      * @param path The path to be serialized to. Relative to constantDataPath Must include a Filename and Extension.
-     * @throws FileNotFoundException When Path not found
      */
-    public <T extends Serializable> void save(T data, String path) throws FileNotFoundException{
+    public <T extends Serializable> void save(T data, String path){
         try {
             FileOutputStream fileOut = new FileOutputStream(serialPath + path);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -71,9 +70,9 @@ public class DataManager {
      * DeSerializes any data.
      * @apiNote Ensure any transient data within the class T will not load.
      * @param path The path to deserialize from. Relative to `joe.DataManager.constantDataPath` Must include a Filename and Extension.
-     * @throws FileNotFoundException When Input File not found
      */
-    public <T extends Serializable> T load(String path) throws FileNotFoundException{
+    @SuppressWarnings("unchecked") //cast to T should be type-checked by user
+    public <T extends Serializable> T load(String path){
         T data;
         try {
             FileInputStream fileIn = new FileInputStream(serialPath + path);
