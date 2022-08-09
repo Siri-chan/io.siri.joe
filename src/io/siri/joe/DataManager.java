@@ -44,10 +44,10 @@ public class DataManager {
         }
         assetPath = new File(constantDataPath.toFile(), "assets").toPath();
         serialPath = new File(constantDataPath.toFile(), "serial").toPath();
-        if (!assetPath.toFile().mkdirs()){
+        if (!(assetPath.toFile().exists() || assetPath.toFile().mkdirs())){
             Core.LogError("(Non-Fatal) DataManager failed to Initialise; Could not initialise asset data sub-path.");
         }
-        if (!serialPath.toFile().mkdirs()){
+        if (!(serialPath.toFile().exists() || serialPath.toFile().mkdirs())){
             Core.LogError("(Non-Fatal) DataManager failed to Initialise; Could not initialise save data sub-path.");
         }
     }

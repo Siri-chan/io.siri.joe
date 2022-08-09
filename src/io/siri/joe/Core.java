@@ -36,6 +36,8 @@ public class Core extends Canvas implements Runnable {
      * @author Siri
      */
     public void init(Config cfg) {
+        if(c != null) return;
+        c = this;
         config = cfg;
         d = new DataManager(cfg);
         handler = new Handler();
@@ -47,8 +49,6 @@ public class Core extends Canvas implements Runnable {
     }
 
     public synchronized void start() {
-        if(c != null) return;
-        c = this;
         thread = new Thread(this);
         thread.start();
         running = true;
