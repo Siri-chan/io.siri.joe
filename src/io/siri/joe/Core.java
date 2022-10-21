@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2022. Kira "Siri" K.
+ * Distributed subject to the terms of the Mozilla Public License (MPL) v 2.0
+ * See the LICENSE File for more Details
+ * If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
+
 // Name of the package must be same as the directory
 // under which this file is saved
 package io.siri.joe;
