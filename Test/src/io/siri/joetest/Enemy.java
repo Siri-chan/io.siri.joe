@@ -18,6 +18,7 @@ public class Enemy extends GameObject{
         super(pos, scale);
         b = new BoxCollider(this, scale);
         this.components.add(b);
+        setLayer(-1);
     }
 
     final BoxCollider b;

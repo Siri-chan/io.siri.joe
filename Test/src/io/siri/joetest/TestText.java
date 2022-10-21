@@ -6,8 +6,7 @@ import io.siri.joe.components.TextRenderer;
 
 import java.awt.*;
 
-import static java.awt.event.KeyEvent.VK_E;
-import static java.awt.event.KeyEvent.VK_Q;
+import static java.awt.event.KeyEvent.*;
 
 public class TestText extends GameObject {
 
@@ -54,6 +53,7 @@ public class TestText extends GameObject {
     public TestText(Vector2Int pos, Dimension scale) {
         super(pos, scale);
         t = new TextRenderer(this, new Font(Font.DIALOG_INPUT, Font.PLAIN, 25), Color.blue, "test");
+        setLayer(2);
         this.components.add(t);
     }
 
@@ -66,9 +66,13 @@ public class TestText extends GameObject {
     @Override
     public void tic(double delta, int[] inputs) {
         for (var input : inputs) {
-            if (input != VK_Q && input != VK_E)
+            if (input != VK_Q && input != VK_E && input != VK_C)
                 continue;
-            if(input == VK_E){
+            if (input == VK_C) {
+                setLayer(getLayer() * -1);
+                continue;
+            }
+            if (input == VK_E){
                 t.font = new Font(Font.SERIF, Font.PLAIN, 25);
                 continue;
             }
