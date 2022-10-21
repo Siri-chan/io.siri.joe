@@ -26,7 +26,8 @@ Please also be aware that:
 2. Documentation Changes (such as to this README, or to JavaDoc within the Source)
 **DO <u>NOT</u>** increment the Semantic Versioning Patch Number 
 
-The Version of JOE that this readme is packaged with is 0.3.0
+The Version of JOE that this readme is packaged with is 0.4.x
+(We only version bump this with each minor update, consult git history for exact patch)
 
 # Documentation
 I have tried my best to provide decent documentation of as many public-facing classes as possible, 
@@ -91,7 +92,7 @@ Breach of this license is illegal under international Copyright law.
 # ToDos:
 - [ ] Write JavaDoc for everything
 - [x] Texturing for Objects
-- [ ] Rendering Layers
+- [x] Rendering Layers
 - [ ] Animation 
   _(realised I probably don't need this because the render() method is fully exposed)_
 - [ ] More Useful Math Library Stuff
@@ -109,8 +110,6 @@ Breach of this license is illegal under international Copyright law.
 - [ ] Post Processing
 - [ ] Maybe Networking Capabilities
 - [ ] Maybe Experiment with 3D?
-- [ ] Non-fixed Update Method, that takes Delta.
-  _(shouldn't take input keycodes, as it would mean dropped inputs in the main (fixed) tic loop)_
 - [ ] Management for Locale Strings
   _(this should take a hashmap that has generic string ids that then return the relevant string for the locale)_
 - [ ] Resolution Scaling without weird bounding issues

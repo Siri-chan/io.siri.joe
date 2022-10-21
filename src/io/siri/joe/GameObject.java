@@ -18,6 +18,8 @@ public abstract class GameObject {
      */
     protected Dimension scale;
 
+    protected int layer = 0;
+
     /**
      * Instantiates a new Game object.
      *
@@ -42,6 +44,22 @@ public abstract class GameObject {
      */
     public void setPos(Vector2Int pos) {
         this.pos = pos;
+    }
+
+    /**
+     * @return The Object's Render Layer.
+     */
+    public int getLayer() {
+        return layer;
+    }
+
+    /**
+     * Sets the Object's Position
+     * @param layer The New Render Layer
+     */
+    public void setLayer(int layer) {
+        Core.c.handler.onChangeRenderLayer();
+        this.layer = layer;
     }
 
     /**
