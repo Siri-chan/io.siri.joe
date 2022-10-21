@@ -19,7 +19,7 @@ import java.util.stream.*;
 public class Handler {
     public LinkedList<GameObject> objs = new LinkedList<>();
     int[] inputs = {};
-    boolean isUpdatingObjs = false;
+    boolean isUpdatingObjs = false, layerChanged = false;
 
     void tic(double delta) {
         if (isUpdatingObjs) return;
@@ -28,6 +28,8 @@ public class Handler {
             obj.tic(delta, inputs);
         }
         inputs = new int[]{};
+        if (layerChanged)
+            changeRenderLayer();
     }
 
     void render(Graphics g) {
@@ -56,11 +58,25 @@ public class Handler {
         onChangeRenderLayer();
     }
 
-    void onChangeRenderLayer() {
+    /**
+     * Changes the order of the objs list, such that it is rendered in layer order.
+     */
+    void changeRenderLayer() {
         isUpdatingObjs = true;
         objs.sort((o1, o2) -> Integer.compare(o1.getLayer(), o2.getLayer()));
         isUpdatingObjs = false;
+        layerChanged = false;
     }
+
+    /**
+     * Run when an object changes it's render layer.
+     * Sets a flag, such that at the end of the next tic() (ie. when it's guaranteed nothing is using objs)
+     * that runs {@code io.siri.joe.Handler.changeRenderLayer()}, when needed
+     */
+    void onChangeRenderLayer() {
+        layerChanged = true;
+    }
+
 
     /**
      * Removes an object from the Tic/Render loop.

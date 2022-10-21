@@ -66,6 +66,8 @@ public abstract class GameObject {
     /**
      * Sets the Object's Position
      * @param layer The New Render Layer
+     * @apiNote This will change the layer at the end of the next tic(), so it is suggested to only run it in tic()
+     *          furthermore, this may cause a delay in the change of layer for a few render frames, so be aware.
      */
     public void setLayer(int layer) {
         Core.c.handler.onChangeRenderLayer();
