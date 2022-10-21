@@ -37,7 +37,7 @@ Here are some guidelines for writing JavaDoc for this project:
 1. Any JavaDoc without an `@since` tag is likely from pre-1.0.0
 2. The `@version` tag documents the version of the function/class, and **not** the version of the project the function/class was written in.
 3. `@version` uses SemVer-like `MAJOR.MINOR`, and should only be updated in case of functionality changes.
-4. JavaDoc Missing a `@version` tag can be presumed to be somewhere within the `1.x` range, and should be moved to `2.0` if any breaking changes arise.
+4. JavaDoc Missing a `@version` tag can be presumed to be somewhere within the `0.x` to `1.x` range, and should be moved to `2.0` if any breaking changes arise.
 5. Any JavaDoc without an `@author` tag should have one *or more* added by checking `git blame`.
 6. The JavaDoc `@author` tag (_at least in this project_) declares the author of **the code**, and not the documentation. 
 7. If you want credit for writing documentation, and do not already have an `@author` tag within the JavaDoc, add an additional `@author` tag and suffix it with `:docs` as below.
