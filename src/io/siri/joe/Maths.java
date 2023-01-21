@@ -50,4 +50,13 @@ public class Maths {
     public static float clamp(float v, float min, float max) {
         return (v > max) ? max : Math.max(v, min);
     }
+    public static int log2(int n){
+        int i = 0;
+        int mask = Integer.MAX_VALUE -1;
+        while ((n & mask) != 0){
+            n = n >> 1;
+            i++;
+        }
+        return i;
+    }
 }
