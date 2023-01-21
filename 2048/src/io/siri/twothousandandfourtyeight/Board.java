@@ -13,7 +13,6 @@ import io.siri.joe.Maths;
 import io.siri.joe.Vector2Int;
 
 import java.awt.*;
-import java.util.Scanner;
 
 import static java.awt.event.KeyEvent.*;
 
