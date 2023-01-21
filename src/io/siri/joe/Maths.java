@@ -59,4 +59,35 @@ public class Maths {
         }
         return i;
     }
+
+    public static long log2(long n){
+        int i = 0;
+        int mask = Integer.MAX_VALUE -1;
+        while ((n & mask) != 0){
+            n = n >> 1;
+            i++;
+        }
+        return i;
+    }
+
+    public static float log2(float n) {
+        int i = 0;
+        int nn = (int)n;
+        int mask = Integer.MAX_VALUE -1;
+        while ((nn & mask) != 0){
+            nn = nn >> 1;
+            i++;
+        }
+        return (float)i;
+    }
+    public static double log2(double n) {
+        int i = 0;
+        int nn = (int)n;
+        int mask = Integer.MAX_VALUE -1;
+        while ((nn & mask) != 0){
+            nn = nn >> 1;
+            i++;
+        }
+        return (double)i;
+    }
 }
