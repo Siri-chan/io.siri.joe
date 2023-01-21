@@ -50,6 +50,14 @@ public class Maths {
     public static float clamp(float v, float min, float max) {
         return (v > max) ? max : Math.max(v, min);
     }
+
+    /**
+     * Base 2 Logarithm
+     *
+     * @param n the input
+     * @return the number that 2 has to be raised to the power of to reach n.
+     * @apiNote Due to the way this is implemented, negative numbers will cause undefined behavior.
+     */
     public static int log2(int n){
         int i = 0;
         int mask = Integer.MAX_VALUE -1;
@@ -60,6 +68,13 @@ public class Maths {
         return i;
     }
 
+    /**
+     * Base 2 Logarithm
+     *
+     * @param n the input
+     * @return the number that 2 has to be raised to the power of to reach n.
+     * @apiNote Due to the way this is implemented, negative numbers will cause undefined behavior.
+     */
     public static long log2(long n){
         int i = 0;
         int mask = Integer.MAX_VALUE -1;
@@ -70,6 +85,13 @@ public class Maths {
         return i;
     }
 
+    /**
+     * Base 2 Logarithm
+     *
+     * @param n the input
+     * @return the number that 2 has to be raised to the power of to reach n.
+     * @apiNote Due to the way this is implemented, negative numbers will cause undefined behavior.
+     */
     public static float log2(float n) {
         int i = 0;
         int nn = (int)n;
@@ -80,6 +102,14 @@ public class Maths {
         }
         return (float)i;
     }
+
+    /**
+     * Base 2 Logarithm
+     *
+     * @param n the input
+     * @return the number that 2 has to be raised to the power of to reach n.
+     * @apiNote Due to the way this is implemented, negative numbers will cause undefined behavior.
+     */
     public static double log2(double n) {
         int i = 0;
         int nn = (int)n;

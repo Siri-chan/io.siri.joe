@@ -50,7 +50,9 @@ Here are some guidelines for writing JavaDoc for this project:
  */
 ```
 8. Typically, `@apiNote` is used for forward-facing notes to users, and `@implNote` is used to annotate about the internal architecture.
-
+9. HTML JavaDoc is generated to the `doc/` directory. This is manually generated and may not be up to
+date. <!-- The generation is done within IDEA "Tools -> Generate JavaDoc... -> Module 'JOE' -> Generate" -->
+10. Using GitHub Pages, the doc should be available on [my website](siri-chan.github.io/io.siri.joe/) once the JOE repository is public.
 
 # Joe's Inspiration, Contributors, Testers and Friends.
 ## Inspiration
@@ -103,7 +105,6 @@ Breach of this license is illegal under international Copyright law.
 - [x] SFX
 - [x] Music
 - [ ] UI System
-  _(Might not need this either, because render() is exposed to GameObjects)_
 - [ ] Physics Engine
 - [x] Collision Detection
 - [ ] Particles
@@ -114,3 +115,8 @@ Breach of this license is illegal under international Copyright law.
   _(this should take a hashmap that has generic string ids that then return the relevant string for the locale)_
 - [ ] Resolution Scaling without weird bounding issues
 - [ ] Component Event Firing
+- [ ] Input System that doesn't use typing based system 
+
+(ie. doesn't have delay between starting to hold a key and the key actually repeating or weird issues with holding multiple keys)
+
+[NOTE: In SDL this problem is solved by using keyboard state, rather than KeyEvents. This may be a clue to solving this issue within AWT.]

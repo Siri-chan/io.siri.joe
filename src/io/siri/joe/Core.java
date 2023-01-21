@@ -32,7 +32,7 @@ public class Core extends Canvas implements Runnable {
     public MusicHandler music;
     public SFXHandler sfx;
     Window win;
-    public static final double ticCount = 60.0;
+    public static final double TARGET_TICS_PER_SECOND = 60.0;
 
     /**
      * Initialises the Core.
@@ -64,7 +64,7 @@ public class Core extends Canvas implements Runnable {
     @Override
     public void run() {
         long lastTime = System.nanoTime();
-        final double ns = 1000000000 / ticCount;
+        final double ns = 1000000000 / TARGET_TICS_PER_SECOND;
         double delta = 0;
         long fpsTimer = System.currentTimeMillis();
         int frames = 0, framesLastFPSCheck = 0;

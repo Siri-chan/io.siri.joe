@@ -69,7 +69,7 @@ public class Handler {
     }
 
     /**
-     * Run when an object changes it's render layer.
+     * Run when an object changes its render layer.
      * Sets a flag, such that at the end of the next tic() (ie. when it's guaranteed nothing is using objs)
      * that runs {@code io.siri.joe.Handler.changeRenderLayer()}, when needed
      */
