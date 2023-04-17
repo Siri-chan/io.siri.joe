@@ -21,15 +21,15 @@ public class Main {
         cfg.title = "Test";
         cfg.suppressDebug = false;
         JOE.init(cfg);
-        JOE.handler.addObject(new Player(new Vector2Int(), new Dimension(10, 10)));
+        JOE.handler.addObject(new Player(new Vector2Int(10, 10), new Dimension(10, 10)));
         JOE.handler.addObject(new Enemy(new Vector2Int(100, 100), new Dimension(10, 10)));
         //todo maybe make an alternate constructor for gameobjects without pos
         //though that would disallow certain components (duh)
-        JOE.handler.addObject(new MusicSystem(Vector2Int.ZERO, new Dimension(0,0)));
-        JOE.handler.addObject(new TestText(new Vector2Int(100, 100), new Dimension(0,0)));
+        JOE.handler.addObject(new MusicSystem());
+        JOE.handler.addObject(new TestText(new Vector2Int(100, 100)));
 
         JOE.d.save(d, "/ser.ser");
-        SaveData q = new SaveData();
+        SaveData q;
         q = JOE.d.load("/ser.ser");
         System.out.println(q.test);
 

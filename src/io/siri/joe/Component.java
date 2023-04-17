@@ -13,7 +13,7 @@ import java.awt.*;
  * A relatively small class designed to abstract the functionality of Components on GameObjects.
  * @author Siri
  */
-public class Component {
+public abstract class Component {
     protected final GameObject parent;
     public boolean enabled = true;
     public Component(GameObject parent){

@@ -15,15 +15,8 @@ import java.awt.*;
 import static java.awt.event.KeyEvent.*;
 
 public class MusicSystem extends GameObject{
-    /**
-     * Instantiates a new Game object.
-     *
-     * @param pos   The Position of the Object.
-     * @param scale The Scale of the Object.
-     */
-    public MusicSystem(Vector2Int pos, Dimension scale) { //todo: this should really have an alternate constructor,
-                                                                // pos and scale are unnecessary here
-        super(pos, scale);
+    public MusicSystem() {
+        super();
         MusicComponent.MusicControls m = new MusicComponent.MusicControls();
         m.resume = VK_SPACE;
         m.pause = VK_M;

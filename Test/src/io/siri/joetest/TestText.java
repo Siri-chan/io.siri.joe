@@ -55,10 +55,9 @@ public class TestText extends GameObject {
      * Instantiates a new Game object.
      *
      * @param pos   The Position of the Object.
-     * @param scale The Scale of the Object.
      */
-    public TestText(Vector2Int pos, Dimension scale) {
-        super(pos, scale);
+    public TestText(Vector2Int pos) {
+        super(pos);
         t = new TextRenderer(this, new Font(Font.DIALOG_INPUT, Font.PLAIN, 25), Color.blue, "test");
         setLayer(2);
         this.components.add(t);

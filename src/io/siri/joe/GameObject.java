@@ -7,6 +7,8 @@
 
 package io.siri.joe;
 
+import io.siri.joe.components.Transform;
+
 import java.awt.*;
 import java.util.*;
 
@@ -15,37 +17,58 @@ import java.util.*;
  * @author Siri
  */
 public abstract class GameObject {
-    /**
-     * The Position of the Object.
-     * @see Vector2Int
-     */
-    protected Vector2Int pos;
-    /**
-     * The Scale of the Object.
-     */
-    protected Dimension scale;
+
 
     /**
      * The Rendering Layer of the Object.
      */
     protected int layer = 0;
 
+    public GameObject() {}
+
+    /**
+     * Instantiates a new Game object.
+     *
+     * @param pos   The Position of the Object.
+     * @deprecated 0.6.0 - Use the empty constructor and add a Transform Component Instead.
+     */
+    public GameObject(Vector2Int pos) {
+        this.components.add(new Transform(this, pos));
+    }
+
+    /**
+     * Instantiates a new Game object.
+     *
+     * @param scale The Scale of the Object.
+     * @deprecated 0.6.0 - Use the empty constructor and add a Transform Component Instead.
+     */
+    public GameObject(Dimension scale) {
+        this.components.add(new Transform(this, scale));
+    }
+
     /**
      * Instantiates a new Game object.
      *
      * @param pos   The Position of the Object.
      * @param scale The Scale of the Object.
+     * @deprecated 0.6.0 - Use the empty constructor and add a Transform Component Instead.
      */
     public GameObject(Vector2Int pos, Dimension scale) {
-        this.pos = pos;
-        this.scale = scale;
+        this.components.add(new Transform(this, pos, scale));
     }
 
     /**
      * @return The Object's Position.
+     * @apiNote Now returns an Option as of 0.6.0 - Objects without a Transform will fail here
      */
-    public Vector2Int getPos() {
-        return pos;
+    public Optional<Vector2Int> getPos() {
+        var b = false;
+        for (int i = 0; i < components.size(); i++) {
+            if (components.get(i) instanceof Transform) {
+                return Optional.ofNullable(((Transform) components.get(i)).pos);
+            }
+        }
+        return Optional.empty();
     }
 
     /**
@@ -53,7 +76,38 @@ public abstract class GameObject {
      * @param pos The New Position
      */
     public void setPos(Vector2Int pos) {
-        this.pos = pos;
+        for (var c: components) {
+            if (c instanceof Transform) {
+                ((Transform) c).pos = pos;
+                return;
+            }
+        }
+    }
+
+    /**
+     * @return The Object's Scale.
+     */
+    public Optional<Dimension> getScale() {
+        var b = false;
+        for (int i = 0; i < components.size(); i++) {
+            if (components.get(i) instanceof Transform) {
+                return Optional.ofNullable(((Transform) components.get(i)).scale);
+            }
+        }
+        return Optional.empty();
+    }
+
+    /**
+     * Sets the Object's Scale
+     * @param scale The New Scale
+     */
+    public void setScale(Dimension scale) {
+        for (var c: components) {
+            if (c instanceof Transform) {
+                ((Transform) c).scale = scale;
+                return;
+            }
+        }
     }
 
     /**
@@ -98,13 +152,13 @@ public abstract class GameObject {
      */
     public LinkedList<Component> components = new LinkedList<>();
 
-    void componentTic(double delta, int[] inputs){
+    protected void componentTic(double delta, int[] inputs){
         for (var component : components) {
             component.tic(delta, inputs);
         }
     }
 
-    void componentRender(Graphics g){
+    protected void componentRender(Graphics g){
         for (var component : components) {
             component.render(g);
         }

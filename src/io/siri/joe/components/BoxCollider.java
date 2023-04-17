@@ -68,7 +68,10 @@ public class BoxCollider extends Component {
      * @author Siri
      */
     Rectangle getBounds() {
-        return new Rectangle(parent.getPos().x, parent.getPos().y, scale.width, scale.height);
+        var posOpt = parent.getPos();
+        if (posOpt.isPresent())
+            return new Rectangle(posOpt.get().x, posOpt.get().y, scale.width, scale.height);
+        return null; //todo this should be an option
     }
 
     /**
@@ -82,7 +85,11 @@ public class BoxCollider extends Component {
         for (var obj : Core.c.handler.objs) {
             for(var component : obj.components) {
                 if(component.getClass() == this.getClass()) {
-                    if (getBounds().intersects(((BoxCollider) component).getBounds())) l.add(obj);
+                    var bounds = getBounds();
+                    var otherBounds = ((BoxCollider) component).getBounds();
+
+                    if (otherBounds != null && bounds != null && bounds.intersects((otherBounds)))
+                        l.add(obj);
                 }
             }
         }

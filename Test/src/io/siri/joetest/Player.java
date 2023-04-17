@@ -28,7 +28,6 @@ public class Player extends GameObject {
 
     public Player(Vector2Int pos, Dimension scale) {
         super(pos, scale);
-        this.pos = new Vector2Int(10, 10);
         b = new BoxCollider(this, scale);
         this.components.add(b);
         p = new ParticleTrail(this, new Dimension(10, 10), 50, Color.BLACK, 25);
@@ -44,19 +43,23 @@ public class Player extends GameObject {
         this.components.add(t);
     }
 
+    void move(Vector2Int direction) {
+        var posOption = getPos();
+        if (!posOption.isPresent()) return;
+        setPos(posOption.get().add(direction));
+    }
     @Override
     public void tic(double delta, int[] inputs) {
         //Input Handling
         for (int keyCode : inputs) {
-            //this shouldn't be a switch, it breaks the for loop if input matches event
             switch (keyCode) {
-                case KeyEvent.VK_UP -> pos = pos.add(Vector2Int.UP.multiply(6));
+                case KeyEvent.VK_UP -> move(Vector2Int.UP.multiply(6));
 
-                case KeyEvent.VK_DOWN -> pos = pos.add(Vector2Int.DOWN.multiply(6));
+                case KeyEvent.VK_DOWN -> move(Vector2Int.DOWN.multiply(6));
 
-                case KeyEvent.VK_LEFT -> pos = pos.add(Vector2Int.LEFT.multiply(6));
+                case KeyEvent.VK_LEFT -> move(Vector2Int.LEFT.multiply(6));
 
-                case KeyEvent.VK_RIGHT -> pos = pos.add(Vector2Int.RIGHT.multiply(6));
+                case KeyEvent.VK_RIGHT -> move(Vector2Int.RIGHT.multiply(6));
 
                 case KeyEvent.VK_SPACE -> p.enabled = !p.enabled;
             }
@@ -84,7 +87,16 @@ public class Player extends GameObject {
     @Override
     public void render(Graphics g) {
         g.setColor(Color.green);
+
         //thought: make render private, add a draw method inside that's public
+        var opt = getPos();
+        if (!opt.isPresent()) return;
+        var pos = opt.get();
+
+        var opt2 = getScale();
+        if (!opt2.isPresent()) return;
+        var scale = opt2.get();
+
         g.fillRect(pos.x, pos.y, scale.width, scale.height);
     }
 }
