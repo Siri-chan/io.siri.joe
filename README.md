@@ -77,7 +77,7 @@ Thank you to the souls who put the effort into writing comprehensive documentati
 It means a lot.
 ## Friend Projects
 
-#Joe's Dependencies.
+# Joe's Dependencies.
 Built on OpenJDK 16, using `java.awt.*`, `java.awt.event.*`, `java.awt.image.*`, 
 `java.text.*`, `java.util.*`, `java.io.*`,
 `java.util.stream.*`, `java.nio.file.*`, `javax.sound.sampled.*` 
