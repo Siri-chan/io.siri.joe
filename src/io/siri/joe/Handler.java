@@ -9,6 +9,7 @@ package io.siri.joe;
 
 import java.awt.*;
 import java.util.*;
+import java.util.List;
 import java.util.stream.*;
 
 /**
@@ -27,7 +28,6 @@ public class Handler {
             obj.componentTic(delta, inputs);
             obj.tic(delta, inputs);
         }
-        inputs = new int[]{};
         if (layerChanged)
             changeRenderLayer();
     }
@@ -95,6 +95,20 @@ public class Handler {
      * @author Siri
      */
     public void addInput(int input) {
-        inputs = IntStream.concat(Arrays.stream(inputs), Arrays.stream(new int[]{input})).toArray();
+        inputs = IntStream.concat(Arrays.stream(inputs), Arrays.stream(new int[]{input})).distinct().toArray();
+    }
+
+    /**
+     * Adds an integer keycode to the handler.
+     *
+     * @param input the input
+     * @see java.awt.event.KeyEvent
+     * @author Siri
+     */
+    public void removeInput(int input) {
+        inputs = IntStream.range(0, inputs.length)
+                .filter(i -> inputs[i] != input)
+                .map(i -> inputs[i])
+                .toArray();
     }
 }

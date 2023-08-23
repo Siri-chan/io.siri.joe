@@ -25,4 +25,7 @@ public class KeyInput extends KeyAdapter {
     public void keyPressed(KeyEvent k) {
         handler.addInput(k.getKeyCode());
     }
+    public void keyReleased(KeyEvent k) {
+        handler.removeInput(k.getKeyCode());
+    }
 }
