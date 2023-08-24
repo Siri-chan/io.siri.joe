@@ -24,7 +24,8 @@ public class Handler {
 
     void tic(double delta) {
         if (isUpdatingObjs) return;
-        for (GameObject obj : objs) {
+        for (int i = 0; i < objs.size(); i++) {
+            var obj = objs.get(i);
             obj.componentTic(delta, inputs);
             obj.tic(delta, inputs);
         }
