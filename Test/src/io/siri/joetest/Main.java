@@ -27,6 +27,7 @@ public class Main {
         //though that would disallow certain components (duh)
         JOE.handler.addObject(new MusicSystem());
         JOE.handler.addObject(new TestText(new Vector2Int(100, 100)));
+        JOE.start();
 
         JOE.d.save(d, "/ser.ser");
         SaveData q;
