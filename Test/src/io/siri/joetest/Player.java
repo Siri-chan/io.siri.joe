@@ -26,6 +26,7 @@ public class Player extends GameObject {
     SpriteRenderer s;
     TextRenderer t;
     int health = 999;
+    boolean spaceDown = false;
 
     public Player(Vector2Int pos, Dimension scale) {
         super(pos, scale);
@@ -46,7 +47,7 @@ public class Player extends GameObject {
 
     void move(Vector2Int direction) {
         var posOption = getPos();
-        if (!posOption.isPresent()) return;
+        if (posOption.isEmpty()) return;
         setPos(posOption.get().add(direction));
     }
     @Override
@@ -62,8 +63,12 @@ public class Player extends GameObject {
 
                 case KeyEvent.VK_RIGHT -> move(Vector2Int.RIGHT.multiply(6));
 
-                case KeyEvent.VK_SPACE -> p.enabled = !p.enabled;
+                case KeyEvent.VK_SPACE -> { if (!spaceDown) { p.enabled =  !p.enabled; spaceDown = true;} }
             }
+        }
+
+        if (Arrays.stream(inputs).noneMatch(el -> el == KeyEvent.VK_SPACE)) {
+            spaceDown = false;
         }
 
         //Collision Checks
@@ -91,11 +96,11 @@ public class Player extends GameObject {
 
         //thought: make render private, add a draw method inside that's public
         var opt = getPos();
-        if (!opt.isPresent()) return;
+        if (opt.isEmpty()) return;
         var pos = opt.get();
 
         var opt2 = getScale();
-        if (!opt2.isPresent()) return;
+        if (opt2.isEmpty()) return;
         var scale = opt2.get();
 
         g.fillRect(pos.x, pos.y, scale.width, scale.height);

@@ -17,12 +17,14 @@ import java.awt.event.*;
  */
 public class KeyInput extends KeyAdapter {
     final Handler handler;
-
     public KeyInput(Handler h) {
         handler = h;
     }
 
     public void keyPressed(KeyEvent k) {
         handler.addInput(k.getKeyCode());
+    }
+    public void keyReleased(KeyEvent k) {
+        handler.dropInput(k.getKeyCode());
     }
 }

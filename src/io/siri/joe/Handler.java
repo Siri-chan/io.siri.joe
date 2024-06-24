@@ -27,7 +27,6 @@ public class Handler {
             obj.componentTic(delta, inputs);
             obj.tic(delta, inputs);
         }
-        inputs = new int[]{};
         if (layerChanged)
             changeRenderLayer();
     }
@@ -63,7 +62,7 @@ public class Handler {
      */
     void changeRenderLayer() {
         isUpdatingObjs = true;
-        objs.sort((o1, o2) -> Integer.compare(o1.getLayer(), o2.getLayer()));
+        objs.sort(Comparator.comparingInt(GameObject::getLayer));
         isUpdatingObjs = false;
         layerChanged = false;
     }
@@ -95,6 +94,9 @@ public class Handler {
      * @author Siri
      */
     public void addInput(int input) {
-        inputs = IntStream.concat(Arrays.stream(inputs), Arrays.stream(new int[]{input})).toArray();
+        if (Arrays.stream(inputs).noneMatch(el -> el == input)) inputs = IntStream.concat(Arrays.stream(inputs), Arrays.stream(new int[]{input})).toArray();
+    }
+    public void dropInput(int input) {
+        inputs = Arrays.stream(inputs).filter(el -> el != input).toArray();
     }
 }
