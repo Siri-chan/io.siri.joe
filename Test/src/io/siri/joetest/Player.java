@@ -10,6 +10,7 @@ package io.siri.joetest;
 //Accordioned Imports useful for categorising examples later.
 import io.siri.joe.*;
 import io.siri.joe.components.BoxCollider;
+import io.siri.joe.components.Transform;
 import io.siri.joe.components.particletrail.ParticleTrail;
 import io.siri.joe.components.SpriteRenderer;
 import io.siri.joe.components.TextRenderer;
@@ -25,11 +26,14 @@ public class Player extends GameObject {
     final ParticleTrail p;
     SpriteRenderer s;
     TextRenderer t;
+    Transform tr;
     int health = 999;
     boolean spaceDown = false;
 
     public Player(Vector2Int pos, Dimension scale) {
-        super(pos, scale);
+        super();
+        tr = new Transform(this, pos, scale);
+        this.components.add(tr);
         b = new BoxCollider(this, scale);
         this.components.add(b);
         p = new ParticleTrailBuilder(this, new Dimension(10, 10), 50).withColor(Color.BLACK).withLifeTime(25).build();
