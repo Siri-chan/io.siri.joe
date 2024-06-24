@@ -52,9 +52,12 @@ public class Handler {
      *
      * @param obj The {@link io.siri.joe.GameObject} to Add.
      */
+    //todo this crashes if called during a tic. Should set up a better `Lock` system
     public void addObject(GameObject obj) {
+        isUpdatingObjs = true;
         this.objs.add(obj);
         onChangeRenderLayer();
+        isUpdatingObjs = false;
     }
 
     /**
