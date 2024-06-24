@@ -31,7 +31,7 @@ public class Player extends GameObject {
         super(pos, scale);
         b = new BoxCollider(this, scale);
         this.components.add(b);
-        p = new ParticleTrailBuilder(this, new Dimension(10, 10), 50).withColor(Color.BLACK).withOffset(new Vector2(25,25));
+        p = new ParticleTrailBuilder(this, new Dimension(10, 10), 50).withColor(Color.BLACK).withLifeTime(25).build();
         this.components.add(p);
         try {
             s = new SpriteRenderer(this, Core.c.d.getSpriteAsset("/20201005103949_1.jpg"), new Dimension(100, 100));

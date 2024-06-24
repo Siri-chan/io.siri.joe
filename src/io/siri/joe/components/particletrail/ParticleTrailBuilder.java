@@ -17,7 +17,7 @@ public class ParticleTrailBuilder {
     GameObject parent;
     Dimension scale;
     long frequency;
-    private Vector2Int pos, offset = new Vector2Int();
+    private Vector2Int offset = new Vector2Int();
     private float baseLife = 4.0f;
     private Vector2Int velocity = new Vector2Int();
     private Color c = Color.magenta;
@@ -26,11 +26,9 @@ public class ParticleTrailBuilder {
         this.parent = parent;
         this.scale = scale;
         this.frequency = frequency;
-        this.pos = parent.getPos().orElse(new Vector2Int());
     }
     public ParticleTrailBuilder withOffset(Vector2 offset) {
         this.offset = offset.toInt();
-        this.pos = this.parent.getPos().orElse(new Vector2Int()).add(offset.toInt());
         return this;
     }
     public ParticleTrailBuilder withVelocity(Vector2Int velocity) {
@@ -47,5 +45,7 @@ public class ParticleTrailBuilder {
         this.baseLife = lifeTime;
         return this;
     }
-    //public ParticleTrail build() {}
+    public ParticleTrail build() {
+        return new ParticleTrail(parent, scale, frequency, c, offset, velocity, baseLife);
+    }
 }

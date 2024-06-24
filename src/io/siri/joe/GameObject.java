@@ -81,7 +81,7 @@ public abstract class GameObject {
 
     public <T extends Component> Optional<T> GetComponent(Class<T> tClass){
         for (var c: this.components) {
-            if (tClass.isInstance(c)) return Optional.of((T) c);
+            if (tClass.isInstance(c)) return Optional.of(tClass.cast(c));
         }
         return Optional.empty();
     }
@@ -90,13 +90,8 @@ public abstract class GameObject {
      * @return The Object's Scale.
      */
     public Optional<Dimension> getScale() {
-        var b = false;
-        for (int i = 0; i < components.size(); i++) {
-            if (components.get(i) instanceof Transform) {
-                return Optional.ofNullable(((Transform) components.get(i)).scale);
-            }
-        }
-        return Optional.empty();
+        Optional<Transform> transform = GetComponent(Transform.class);
+        return transform.map(value -> value.scale);
     }
 
     /**
