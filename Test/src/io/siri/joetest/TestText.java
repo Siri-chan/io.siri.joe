@@ -10,14 +10,17 @@ package io.siri.joetest;
 import io.siri.joe.GameObject;
 import io.siri.joe.Vector2Int;
 import io.siri.joe.components.TextRenderer;
+import io.siri.joe.components.Transform;
 
 import java.awt.*;
+import java.util.Arrays;
 
 import static java.awt.event.KeyEvent.*;
 
 public class TestText extends GameObject {
 
     TextRenderer t;
+    Transform tr;
     final String[] texts = {
             /* WARNING: English and Japanese are the only languages I am literate in myself.
             *   Also, character sets with broken afterwards do not work in the given default fonts:
@@ -29,7 +32,7 @@ public class TestText extends GameObject {
             */
             "test",
             "this test is far longer than the initial test Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            "Alternate_Characters::Japanese: これは書くことテストです。",
+            "Alternate_Characters::Japanese: これは書くことのテストです。",
             "Alternate_Characters::Chinese_Traditional: 這是一個寫作測試",
             "Alternate_Characters::Korean: 이것은 글쓰기 테스트입니다", //broken ss s ms d di
             "Alternate_Characters::Hindi: यह एक लेखन परीक्षा है।", //broken ss s ms d di
@@ -57,12 +60,15 @@ public class TestText extends GameObject {
      * @param pos   The Position of the Object.
      */
     public TestText(Vector2Int pos) {
-        super(pos);
+        super();
+        tr = new Transform(this, pos);
+        this.components.add(tr);
         t = new TextRenderer(this, new Font(Font.DIALOG_INPUT, Font.PLAIN, 25), Color.blue, "test");
         setLayer(2);
         this.components.add(t);
     }
 
+    boolean eDown = false, cDown = false;
     /**
      * Tic. Runs at 60FPS.
      *
@@ -74,17 +80,19 @@ public class TestText extends GameObject {
         for (var input : inputs) {
             if (input != VK_Q && input != VK_E && input != VK_C)
                 continue;
-            if (input == VK_C) {
+            if (input == VK_C && !cDown) {
                 setLayer(getLayer() * -1);
                 continue;
             }
-            if (input == VK_E){
-                t.font = new Font(Font.SERIF, Font.PLAIN, 25);
+            if (input == VK_E && !eDown){
+                i++;
+                i %= texts.length;
+                t.contents = texts [i];
                 continue;
             }
-            i++;
-            i %= texts.length;
-            t.contents = texts [i];
+            t.font = new Font(Font.SERIF, Font.PLAIN, 25);
         }
+        eDown = Arrays.stream(inputs).anyMatch(el -> el == VK_E);
+        cDown = Arrays.stream(inputs).anyMatch(el -> el == VK_C);
     }
 }
