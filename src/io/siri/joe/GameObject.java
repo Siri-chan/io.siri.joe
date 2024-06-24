@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022. Kira "Siri" K.
+ * Copyright (c) 2022-2024. Kira "Siri" K.
  * Distributed subject to the terms of the Mozilla Public License (MPL) v 2.0
  * See the LICENSE File for more Details
  * If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
@@ -79,6 +79,13 @@ public abstract class GameObject {
         }
     }
 
+    /**
+     * Finds the first member {@link Component} of type {@code tClass}
+     * @param tClass The class that you want to find.
+     * @return The first component attatched to this gameobject that is {@code instanceof} tClass
+     * @param <T> A Guard Scoping the typeof tClass to only implementors of {@link Component}
+     * @author Siri
+     */
     public <T extends Component> Optional<T> GetComponent(Class<T> tClass){
         for (var c: this.components) {
             if (tClass.isInstance(c)) return Optional.of(tClass.cast(c));

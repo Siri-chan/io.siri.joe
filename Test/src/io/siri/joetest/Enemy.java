@@ -8,10 +8,10 @@
 package io.siri.joetest;
 
 //Accordioned Imports useful for categorising examples later.
-import io.siri.joe.Vector2;
 import io.siri.joe.components.BoxCollider;
 import io.siri.joe.GameObject;
 import io.siri.joe.Vector2Int;
+import io.siri.joe.components.Transform;
 
 import java.awt.*;
 
@@ -23,18 +23,21 @@ public class Enemy extends GameObject{
      * @param scale The Scale of the Object.
      */
     public Enemy(Vector2Int pos, Dimension scale) {
-        super(pos, scale);
+        super();
+        tr = new Transform(this, pos, scale);
+        this.components.add(tr);
         b = new BoxCollider(this, scale);
         this.components.add(b);
         setLayer(-1);
     }
 
     final BoxCollider b;
+    Transform tr;
     int speed = 6;
 
     @Override
     public void tic(double delta, int[] inputs) {
-        var pos = getPos().get();
+        Vector2Int pos = getPos().get();
         pos.x += speed;
         if(pos.x < 0 || pos.x > Main.cfg.resolution.width){
             speed *= -1;

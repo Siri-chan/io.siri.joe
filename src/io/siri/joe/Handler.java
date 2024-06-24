@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022. Kira "Siri" K.
+ * Copyright (c) 2022-2024. Kira "Siri" K.
  * Distributed subject to the terms of the Mozilla Public License (MPL) v 2.0
  * See the LICENSE File for more Details
  * If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
@@ -96,6 +96,13 @@ public class Handler {
     public void addInput(int input) {
         if (Arrays.stream(inputs).noneMatch(el -> el == input)) inputs = IntStream.concat(Arrays.stream(inputs), Arrays.stream(new int[]{input})).toArray();
     }
+    /**
+     * Removes an integer keycode to the handler.
+     *
+     * @param input the input
+     * @see java.awt.event.KeyEvent
+     * @author Siri
+     */
     public void dropInput(int input) {
         inputs = Arrays.stream(inputs).filter(el -> el != input).toArray();
     }

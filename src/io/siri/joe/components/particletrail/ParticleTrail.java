@@ -27,13 +27,15 @@ public class ParticleTrail extends Component {
     private Vector2Int pos, offset = new Vector2Int();
     private Color c = Color.magenta;
     private Dimension scale;
-    private float life = 4.0f, baseLife;
+    private float life = 4.0f;
+    private final float baseLife;
     public long lasttime = System.currentTimeMillis();
     public long frequency;
     LinkedList<Particle> particles = new LinkedList<>();
 
     /**
-     * Instantiates a new {@link ParticleTrail}. You likely want a {@link ParticleTrailBuilder}.
+     * Instantiates a new {@link ParticleTrail}.
+     * @deprecated 0.6.0 - Use a {@link ParticleTrailBuilder} instead, to pick-and-choose parameters.
      *
      * @param parent The parent {@linkplain GameObject}. In 99% of cases, use the keyword `this`.
      * @param scale The size of a given particle.
