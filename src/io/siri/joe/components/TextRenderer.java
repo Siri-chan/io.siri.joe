@@ -78,8 +78,11 @@ public class TextRenderer extends Component {
     public void render(Graphics g){
         if(!enabled) return;
         var g2d = (Graphics2D) g;
+        var _parentPos = parent.getPos();
+        if (_parentPos.isEmpty()) return;
+        var parentPos = _parentPos.get();
         g2d.setColor(color);
         g2d.setFont(font);
-        g2d.drawString(contents, (hasPos ? pos.x : parent.getPos().x), (hasPos ? pos.y : parent.getPos().y) + g2d.getFontMetrics().getAscent());
+        g2d.drawString(contents, (hasPos ? pos.x : parentPos.x), (hasPos ? pos.y : parentPos.y) + g2d.getFontMetrics().getAscent());
     }
 }

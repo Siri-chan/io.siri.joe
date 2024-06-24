@@ -55,7 +55,9 @@ public class SpriteRenderer extends Component {
     }
     @Override
     public void render(Graphics graphics) {
-        if(!enabled) return;
-        graphics.drawImage(sprite, parent.getPos().x, parent.getPos().y, scale.width, scale.height, null);
+        var posOpt = parent.getPos();
+        if(!enabled || posOpt.isEmpty()) return;
+        var pos = posOpt.get();
+        graphics.drawImage(sprite, pos.x, pos.y, scale.width, scale.height, null);
     }
 }

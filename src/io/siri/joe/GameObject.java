@@ -62,13 +62,8 @@ public abstract class GameObject {
      * @apiNote Now returns an Option as of 0.6.0 - Objects without a Transform will fail here
      */
     public Optional<Vector2Int> getPos() {
-        var b = false;
-        for (int i = 0; i < components.size(); i++) {
-            if (components.get(i) instanceof Transform) {
-                return Optional.ofNullable(((Transform) components.get(i)).pos);
-            }
-        }
-        return Optional.empty();
+        Optional<Transform> transform = GetComponent(Transform.class);
+        return transform.map(value -> value.pos);
     }
 
     /**
@@ -82,6 +77,13 @@ public abstract class GameObject {
                 return;
             }
         }
+    }
+
+    public <T extends Component> Optional<T> GetComponent(Class<T> tClass){
+        for (var c: this.components) {
+            if (tClass.isInstance(c)) return Optional.of((T) c);
+        }
+        return Optional.empty();
     }
 
     /**
