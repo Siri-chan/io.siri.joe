@@ -65,7 +65,7 @@ public class ParticleTrail extends Component {
 
     @Override
     public void tic(double delta, int[] inputs) {
-        if(!enabled || removeLock) return;
+        if(removeLock) return;
         if(lasttime + frequency < System.currentTimeMillis()) {
             pos = parent.getPos().orElse(new Vector2Int()).add(offset);
             particles.add(new Particle(this, scale, c, pos, velocity, life));
@@ -80,7 +80,7 @@ public class ParticleTrail extends Component {
 
     @Override
     public void render(Graphics g) {
-        if(removeLock) return;
+        if(!enabled || removeLock) return;
         for (var part : particles) {
             if(removeLock) break;
             part.render(g);
