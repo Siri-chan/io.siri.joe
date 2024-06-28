@@ -9,8 +9,6 @@ package io.siri.joe.components;
 
 import io.siri.joe.*;
 
-import java.util.Arrays;
-
 /**
  * Implements playing music directly to a GameObject near you!
  * @author Siri
@@ -71,40 +69,42 @@ public class MusicComponent extends Component {
      * @author Siri
      */
     @Override
-    public void tic(double delta, int[] inputs){
+    public void tic(double delta, Input inputs){
         if (!enabled) return;
-        for (int keyCode : inputs){
-            //this can't be a switch bc music controls aren't constant.
-            if (keyCode == musicControls.play && !musicControls.playDown) {
-                Core.c.music.play(id);
-                playState = true;
-            }
-            if (keyCode == musicControls.resume && !musicControls.resumeDown) {
-                Core.c.music.resume(id);
-                playState = true;
-            }
-            if (keyCode == musicControls.pause && !musicControls.pauseDown) {
+
+        if (inputs.keyDown(musicControls.play)) {
+            Core.c.music.play(id);
+            playState = true;
+        }
+
+        if (inputs.keyDown(musicControls.resume)) {
+            Core.c.music.resume(id);
+            playState = true;
+        }
+
+        if (inputs.keyDown(musicControls.pause)) {
+            Core.c.music.pause(id);
+            playState = false;
+        }
+
+        if (inputs.keyDown(musicControls.stop)) {
+            Core.c.music.stop(id);
+            Core.c.music.play(id);
+            playState = false;
+        }
+
+        if (inputs.keyDown(musicControls.restart)) {
+            Core.c.music.restart(id);
+            playState = true;
+        }
+
+        if (inputs.keyDown(musicControls.toggle)) {
+            if (playState) {
                 Core.c.music.pause(id);
-                playState = false;
-            }
-            if (keyCode == musicControls.stop && !musicControls.stopDown) {
-                Core.c.music.stop(id);
-                Core.c.music.play(id);
-                playState = false;
-            }
-            if (keyCode == musicControls.restart && !musicControls.restartDown) {
-                Core.c.music.restart(id);
-                playState = true;
-            }
-            if (keyCode == musicControls.toggle && !musicControls.toggleDown) {
-                if (playState) {
-                    Core.c.music.pause(id);
-                } else {
-                    Core.c.music.resume(id);
-                }
+            } else {
+                Core.c.music.resume(id);
             }
         }
-        musicControls.updInputState(inputs);
     }
 
     /**
@@ -121,14 +121,5 @@ public class MusicComponent extends Component {
         public int stop = -1;
         public int restart = -1;
         public int toggle = -1;
-        protected boolean playDown = false, resumeDown = false, pauseDown = false, stopDown = false, restartDown = false, toggleDown = false;
-        void updInputState(int[] inputs) {
-            playDown = Arrays.stream(inputs).anyMatch(el -> el == play);
-            resumeDown = Arrays.stream(inputs).anyMatch(el -> el == resume);
-            pauseDown = Arrays.stream(inputs).anyMatch(el -> el == pause);
-            stopDown = Arrays.stream(inputs).anyMatch(el -> el == stop);
-            restartDown = Arrays.stream(inputs).anyMatch(el -> el == restart);
-            toggleDown = Arrays.stream(inputs).anyMatch(el -> el == toggle);
-        }
     }
 }

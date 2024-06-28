@@ -8,6 +8,7 @@
 package io.siri.joetest;
 
 //Accordioned Imports useful for categorising examples later.
+import io.siri.joe.Input;
 import io.siri.joe.components.BoxCollider;
 import io.siri.joe.GameObject;
 import io.siri.joe.Vector2Int;
@@ -36,7 +37,7 @@ public class Enemy extends GameObject{
     int speed = 6;
 
     @Override
-    public void tic(double delta, int[] inputs) {
+    public void tic(double delta, Input inputs) {
         Vector2Int pos = getPos().get();
         pos.x += speed;
         if(pos.x < 0 || pos.x > Main.cfg.resolution.width){

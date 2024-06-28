@@ -22,14 +22,12 @@ import java.util.*;
  * @author Siri
  */
 public class ParticleTrail extends Component {
-    private float alpha = 1;
-    private Vector2Int velocity = new Vector2Int();
-    private Vector2Int pos, offset = new Vector2Int();
-    private Color c = Color.magenta;
-    private Dimension scale;
-    private float life = 4.0f;
-    private final float baseLife;
-    public long lasttime = System.currentTimeMillis();
+    private Vector2Int pos;
+    private final Vector2Int velocity, offset;
+    private final Color c;
+    private final Dimension scale;
+    private final float life;
+    public long lastTime = System.currentTimeMillis();
     public long frequency;
     LinkedList<Particle> particles = new LinkedList<>();
 
@@ -46,6 +44,7 @@ public class ParticleTrail extends Component {
      * @param lifeTime The amount of time (in tics / 10) that it takes for the particle to disappear.
      * @author Siri
      */
+    @SuppressWarnings("DeprecatedIsStillUsed")
     public ParticleTrail(GameObject parent, Dimension scale, long frequency, Color color, Vector2Int offset, Vector2Int velocity, float lifeTime) {
         super(parent);
         this.scale = scale;
@@ -55,21 +54,15 @@ public class ParticleTrail extends Component {
         pos = offset;
         this.offset = offset;
         life = Maths.clamp(lifeTime, 0, 10);
-        baseLife = life;
-    }
-
-    private AlphaComposite makeTransparent(float alpha){
-        int type = AlphaComposite.SRC_OVER;
-        return AlphaComposite.getInstance(type, alpha);
     }
 
     @Override
-    public void tic(double delta, int[] inputs) {
+    public void tic(double delta, Input inputs) {
         if(removeLock) return;
-        if(lasttime + frequency < System.currentTimeMillis()) {
+        if(lastTime + frequency < System.currentTimeMillis()) {
             pos = parent.getPos().orElse(new Vector2Int()).add(offset);
             particles.add(new Particle(this, scale, c, pos, velocity, life));
-            lasttime = System.currentTimeMillis();
+            lastTime = System.currentTimeMillis();
         }
         for (var part : particles) {
             part.tic(delta);
@@ -105,6 +98,7 @@ public class ParticleTrail extends Component {
      * @implNote Is non-static because it should never be instantiated without a {@link ParticleTrail}
      * @see ParticleTrail
      */
+    @SuppressWarnings("InnerClassMayBeStatic")
     protected class Particle {
         /**
          * The Parent {@link ParticleTrail}.

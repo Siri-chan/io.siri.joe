@@ -20,7 +20,7 @@ public abstract class Component {
         this.parent = parent;
     }
     @Virtual
-    public void tic(double delta, int[] inputs){}
+    public void tic(double delta, Input inputs){}
     @Virtual
     public void render(Graphics g){}
 }

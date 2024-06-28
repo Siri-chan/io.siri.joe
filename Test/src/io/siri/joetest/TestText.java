@@ -8,12 +8,12 @@
 package io.siri.joetest;
 
 import io.siri.joe.GameObject;
+import io.siri.joe.Input;
 import io.siri.joe.Vector2Int;
 import io.siri.joe.components.TextRenderer;
 import io.siri.joe.components.Transform;
 
 import java.awt.*;
-import java.util.Arrays;
 
 import static java.awt.event.KeyEvent.*;
 
@@ -68,7 +68,6 @@ public class TestText extends GameObject {
         this.components.add(t);
     }
 
-    boolean eDown = false, cDown = false;
     /**
      * Tic. Runs at 60FPS.
      *
@@ -76,23 +75,18 @@ public class TestText extends GameObject {
      * @param inputs Keys being pressed on the frame.
      */
     @Override
-    public void tic(double delta, int[] inputs) {
-        for (var input : inputs) {
-            if (input != VK_Q && input != VK_E && input != VK_C)
-                continue;
-            if (input == VK_C && !cDown) {
-                setLayer(getLayer() * -1);
-                continue;
-            }
-            if (input == VK_E && !eDown){
-                i++;
-                i %= texts.length;
-                t.contents = texts [i];
-                continue;
-            }
+    public void tic(double delta, Input inputs) {
+        if (inputs.keyDown(VK_C)) {
+            setLayer(getLayer() * -1);
+
+        }
+        if (inputs.keyDown(VK_E)){
+            i++;
+            i %= texts.length;
+            t.contents = texts[i];
+        }
+        if (inputs.keyDown(VK_Q)) {
             t.font = new Font(Font.SERIF, Font.PLAIN, 25);
         }
-        eDown = Arrays.stream(inputs).anyMatch(el -> el == VK_E);
-        cDown = Arrays.stream(inputs).anyMatch(el -> el == VK_C);
     }
 }

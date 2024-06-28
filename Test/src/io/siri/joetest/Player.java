@@ -28,7 +28,6 @@ public class Player extends GameObject {
     TextRenderer t;
     Transform tr;
     int health = 999;
-    boolean spaceDown = false;
 
     public Player(Vector2Int pos, Dimension scale) {
         super();
@@ -55,25 +54,13 @@ public class Player extends GameObject {
         setPos(posOption.get().add(direction));
     }
     @Override
-    public void tic(double delta, int[] inputs) {
+    public void tic(double delta, Input inputs) {
         //Input Handling
-        for (int keyCode : inputs) {
-            switch (keyCode) {
-                case KeyEvent.VK_UP -> move(Vector2Int.UP.multiply(6));
-
-                case KeyEvent.VK_DOWN -> move(Vector2Int.DOWN.multiply(6));
-
-                case KeyEvent.VK_LEFT -> move(Vector2Int.LEFT.multiply(6));
-
-                case KeyEvent.VK_RIGHT -> move(Vector2Int.RIGHT.multiply(6));
-
-                case KeyEvent.VK_SPACE -> { if (!spaceDown) { p.enabled =  !p.enabled; spaceDown = true;} }
-            }
-        }
-
-        if (Arrays.stream(inputs).noneMatch(el -> el == KeyEvent.VK_SPACE)) {
-            spaceDown = false;
-        }
+        if (inputs.keyHeld(KeyEvent.VK_UP)) move(Vector2Int.UP.multiply(6));
+        if (inputs.keyHeld(KeyEvent.VK_DOWN)) move(Vector2Int.DOWN.multiply(6));
+        if (inputs.keyHeld(KeyEvent.VK_LEFT)) move(Vector2Int.LEFT.multiply(6));
+        if (inputs.keyHeld(KeyEvent.VK_RIGHT)) move(Vector2Int.RIGHT.multiply(6));
+        if (inputs.keyDown(KeyEvent.VK_SPACE)) p.enabled =  !p.enabled;
 
         //Collision Checks
         LinkedList<GameObject> colliding = b.collision();

@@ -10,7 +10,6 @@ package io.siri.joe;
 import java.awt.*;
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.stream.*;
 
 /**
  * Handler is the main driving class of JOE and handles the backend. It exposes the GameObject add/remove messages.
@@ -19,7 +18,7 @@ import java.util.stream.*;
  */
 public class Handler {
     public CopyOnWriteArrayList<GameObject> objs = new CopyOnWriteArrayList<>();
-    int[] inputs = {};
+    Input inputs = new Input();
     boolean layerChanged = false;
 
     void tic(double delta) {
@@ -27,6 +26,7 @@ public class Handler {
             obj.componentTic(delta, inputs);
             obj.tic(delta, inputs);
         }
+        inputs.tic();
         if (layerChanged)
             changeRenderLayer();
     }
@@ -91,7 +91,7 @@ public class Handler {
      * @author Siri
      */
     public void addInput(int input) {
-        if (Arrays.stream(inputs).noneMatch(el -> el == input)) inputs = IntStream.concat(Arrays.stream(inputs), Arrays.stream(new int[]{input})).toArray();
+        inputs.pushInput(input);
     }
     /**
      * Removes an integer keycode to the handler.
@@ -101,6 +101,6 @@ public class Handler {
      * @author Siri
      */
     public void dropInput(int input) {
-        inputs = Arrays.stream(inputs).filter(el -> el != input).toArray();
+        inputs.dropInput(input);
     }
 }

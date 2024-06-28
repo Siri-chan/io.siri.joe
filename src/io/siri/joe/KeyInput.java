@@ -15,7 +15,7 @@ import java.awt.event.*;
  *
  * @author Siri
  */
-public class KeyInput extends KeyAdapter {
+class KeyInput extends KeyAdapter {
     final Handler handler;
     public KeyInput(Handler h) {
         handler = h;
@@ -28,3 +28,4 @@ public class KeyInput extends KeyAdapter {
         handler.dropInput(k.getKeyCode());
     }
 }
+

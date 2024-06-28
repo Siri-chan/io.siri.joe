@@ -139,7 +139,7 @@ public abstract class GameObject {
      * @param inputs Keys being pressed on the frame.
      */
     @Virtual
-    public void tic(double delta, int[] inputs){}
+    public void tic(double delta, Input inputs){}
     //todo maybe add a second tic that doesnt add inputs for non-player objects, like let the inputs be an overflow or smth idk.
 
     /**
@@ -156,7 +156,7 @@ public abstract class GameObject {
      */
     public LinkedList<Component> components = new LinkedList<>();
 
-    protected void componentTic(double delta, int[] inputs){
+    protected void componentTic(double delta, Input inputs){
         for (var component : components) {
             component.tic(delta, inputs);
         }
