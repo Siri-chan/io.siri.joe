@@ -9,6 +9,7 @@ package io.siri.joe;
 
 import java.awt.*;
 import java.util.*;
+import java.util.concurrent.*;
 import java.util.stream.*;
 
 /**
@@ -17,12 +18,11 @@ import java.util.stream.*;
  * @author Siri
  */
 public class Handler {
-    public LinkedList<GameObject> objs = new LinkedList<>();
+    public CopyOnWriteArrayList<GameObject> objs = new CopyOnWriteArrayList<>();
     int[] inputs = {};
-    boolean isUpdatingObjs = false, layerChanged = false;
+    boolean layerChanged = false;
 
     void tic(double delta) {
-        if (isUpdatingObjs) return;
         for (GameObject obj : objs) {
             obj.componentTic(delta, inputs);
             obj.tic(delta, inputs);
@@ -32,7 +32,6 @@ public class Handler {
     }
 
     void render(Graphics g) {
-        if (isUpdatingObjs) return;
         for (GameObject obj : objs) {
             obj.componentRender(g);
             obj.render(g);
@@ -40,7 +39,6 @@ public class Handler {
     }
     
     void dispose(){
-        if (isUpdatingObjs) return;
         for (GameObject obj :
                 objs) {
             removeObject(obj);
@@ -54,19 +52,15 @@ public class Handler {
      */
     //todo this crashes if called during a tic. Should set up a better `Lock` system
     public void addObject(GameObject obj) {
-        isUpdatingObjs = true;
         this.objs.add(obj);
         onChangeRenderLayer();
-        isUpdatingObjs = false;
     }
 
     /**
      * Changes the order of the objs list, such that it is rendered in layer order.
      */
     void changeRenderLayer() {
-        isUpdatingObjs = true;
         objs.sort(Comparator.comparingInt(GameObject::getLayer));
-        isUpdatingObjs = false;
         layerChanged = false;
     }
 
