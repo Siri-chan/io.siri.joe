@@ -11,6 +11,7 @@ import io.siri.joe.components.Transform;
 
 import java.awt.*;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * An abstract class designed to be overridden for every object in the game. Contains {@link Component}s, Position and Scale by Default.
@@ -154,7 +155,7 @@ public abstract class GameObject {
      * The Sub-Components of the Object.
      * @see Component
      */
-    public LinkedList<Component> components = new LinkedList<>();
+    public CopyOnWriteArrayList<Component> components = new CopyOnWriteArrayList<>();
 
     protected void componentTic(double delta, Input inputs){
         for (var component : components) {
