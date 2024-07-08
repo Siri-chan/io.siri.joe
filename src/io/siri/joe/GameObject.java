@@ -107,12 +107,8 @@ public abstract class GameObject {
      * @param scale The New Scale
      */
     public void setScale(Dimension scale) {
-        for (var c: components) {
-            if (c instanceof Transform) {
-                ((Transform) c).scale = scale;
-                return;
-            }
-        }
+        Optional<Transform> transform = GetComponent(Transform.class);
+        transform.get().scale = scale;
     }
 
     /**

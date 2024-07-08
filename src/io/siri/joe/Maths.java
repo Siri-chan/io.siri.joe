@@ -118,6 +118,6 @@ public class Maths {
             nn = nn >> 1;
             i++;
         }
-        return (double)i;
+        return i;
     }
 }

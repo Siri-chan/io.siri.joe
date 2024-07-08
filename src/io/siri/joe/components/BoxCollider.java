@@ -21,7 +21,7 @@ import java.util.*;
  * @author Siri
  */
 public class BoxCollider extends Component {
-    protected Dimension scale;
+    protected final Dimension scale;
     /**
      * Determines if a Visible Hitbox Square should be displayed.
      */
@@ -71,7 +71,7 @@ public class BoxCollider extends Component {
         var posOpt = parent.getPos();
         if (posOpt.isPresent())
             return new Rectangle(posOpt.get().x, posOpt.get().y, scale.width, scale.height);
-        return null; //todo this should be an option
+        return null; //todo this should return an option
     }
 
     /**

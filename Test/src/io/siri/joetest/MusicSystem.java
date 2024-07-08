@@ -10,8 +10,6 @@ package io.siri.joetest;
 import io.siri.joe.*;
 import io.siri.joe.components.MusicComponent;
 
-import java.awt.*;
-
 import static java.awt.event.KeyEvent.*;
 
 public class MusicSystem extends GameObject{

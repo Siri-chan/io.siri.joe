@@ -40,7 +40,7 @@ public class Config {
     public boolean suppressDebug = true;
 
     /**
-     * Creates the very base Config.
+     * Creates the base Config.
      *
      * @param pkgid  The name of the game's Java Package.
      * @param author The Author(s) of the Game.

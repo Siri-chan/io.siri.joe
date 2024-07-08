@@ -9,7 +9,6 @@ package io.siri.joe.components;
 
 import io.siri.joe.Component;
 import io.siri.joe.GameObject;
-import io.siri.joe.Vector2;
 import io.siri.joe.Vector2Int;
 
 import java.awt.*;

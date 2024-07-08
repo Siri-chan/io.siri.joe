@@ -10,8 +10,8 @@ package io.siri.twothousandandfourtyeight;
 import java.io.Serializable;
 
 public class ScoreData implements Serializable {
-    Score bestScores[] = new Score[10];
-    Time bestTimes[] = new Time[10];
+    Score[] bestScores = new Score[10];
+    Time[] bestTimes = new Time[10];
 
     public static class Score {
         String playerName;

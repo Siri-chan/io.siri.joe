@@ -39,7 +39,7 @@ public class DataManager {
                 f = p.toAbsolutePath().toFile();
             }
             //System.out.println("F " + f);
-            if(f.mkdirs() || f.exists()) { //was using mkdir, needed mkdirs, which is equivalent to `mkdir -p`
+            if(f.exists() || f.mkdirs()) { //was using mkdir, needed mkdirs, which is equivalent to `mkdir -p`
                 constantDataPath = p;
                 //System.out.println("SET F " + f);
                 set = true;
