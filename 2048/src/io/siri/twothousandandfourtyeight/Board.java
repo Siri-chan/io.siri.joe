@@ -7,20 +7,16 @@
 
 package io.siri.twothousandandfourtyeight;
 
-import io.siri.joe.Core;
-import io.siri.joe.GameObject;
-import io.siri.joe.Maths;
-import io.siri.joe.Vector2Int;
+import io.siri.joe.*;
 
 import java.awt.*;
-import java.util.Scanner;
 
 import static java.awt.event.KeyEvent.*;
 
 public class Board extends GameObject {
     int[][] board=new int[4][4];
     public Board () {
-        super(new Vector2Int(),new Dimension());
+        super();
         placeTwo();
     }
     int hasFree(){
@@ -52,28 +48,16 @@ public class Board extends GameObject {
     int vec(){
         return Core.c.rand.nextInt(4);
     }
-    public void tic(double delta, int[] inputs) {
+    public void tic(double delta, Input inputs) {
         if (!(notDone() > 0)) return;
         resolve(inputs);
         placeTwo();
     }
-    void resolve(int inputs[]){
-        for (int input : inputs) {
-            switch (input) {
-                case VK_LEFT:
-                    if (fold(false, true) > 0) return;
-                    break;
-                case VK_RIGHT:
-                    if (fold(true, true) > 0) return;
-                    break;
-                case VK_UP:
-                    if (fold(false, false) > 0) return;
-                    break;
-                case VK_DOWN:
-                    if (fold(true, false) > 0) return;
-                    break;
-            }
-        }
+    void resolve(Input inputs){
+        if (inputs.keyDown(VK_LEFT) && fold(false, true) > 0) return;
+        if (inputs.keyDown(VK_RIGHT) && fold(true, true) > 0) return;
+        if (inputs.keyDown(VK_UP) && fold(false, false) > 0) return;
+        if (inputs.keyDown(VK_DOWN) && fold(true, false) > 0) return;
     }
 
     // false,true  = up
