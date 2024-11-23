@@ -14,7 +14,7 @@ import java.awt.*;
  * @author Siri
  */
 public abstract class Component {
-    protected final GameObject parent;
+    public final GameObject parent;
     public boolean enabled = true;
     public Component(GameObject parent){
         this.parent = parent;

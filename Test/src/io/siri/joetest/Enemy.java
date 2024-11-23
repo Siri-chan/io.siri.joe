@@ -9,7 +9,7 @@ package io.siri.joetest;
 
 //Accordioned Imports useful for categorising examples later.
 import io.siri.joe.Input;
-import io.siri.joe.components.BoxCollider;
+import io.siri.joe.components.collider.BoxCollider;
 import io.siri.joe.GameObject;
 import io.siri.joe.Vector2Int;
 import io.siri.joe.components.Transform;
