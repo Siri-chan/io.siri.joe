@@ -38,6 +38,7 @@ public class Config {
      * If true, hides debug info from the console.
      */
     public boolean suppressDebug = true;
+    public boolean suppressFps = true;
 
     /**
      * Creates the base Config.

@@ -80,7 +80,8 @@ public class Core extends Canvas implements Runnable {
             if (!running) break;
             render();
             frames++;
-            if (System.currentTimeMillis() - fpsTimer > 250) {
+            // Log average FPS every quarter-second if appropriate.
+            if (!Core.c.config.suppressFps && System.currentTimeMillis() - fpsTimer > 250) {
                 fpsTimer += 250;
                 Log("FPS: " + ((frames - framesLastFPSCheck) * 4));
                 framesLastFPSCheck = frames;
